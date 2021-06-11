@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <title>Clinica Plasencia</title>
+    <title>Clínica Médica Plasencia</title>
     <!--
 
     Template 2098 Health
@@ -61,20 +61,19 @@
         <!-- MENU LINKS -->
         <div class="collapse navbar-collapse">
             <!-- <a href="#" class="navbar-brand"><img width="60px" height="60px" src="diseno/images/plasencia.png" class="img-responsive" alt="" align="left"></a>-->
-             <ul class="nav navbar-nav navbar-right">
-                 <li><a href="#top" class="smoothScroll">Iniciar Sesión</a></li>
-                 <li><a href="#about" class="smoothScroll">Registro</a></li>
-                 <li><a href="#team" class="smoothScroll">Acerca de</a></li>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{route("registro")}}" class="smoothScroll">Iniciar Sesión</a></li>
+                <li><a href="{{ route('register')}}" class="smoothScroll">Registro</a></li>
+                <li><a href="#team" class="smoothScroll">Acerca de</a></li>
+
+            </ul>
+        </div>
+
+    </div>
+</section>
 
 
-             </ul>
-         </div>
-
-     </div>
- </section>
-
-
- <!-- HOME -->
+<!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row">
@@ -83,15 +82,14 @@
                 <div class="item item-first">
                     <div class="caption">
                         <div class="col-md-offset-1 col-md-10">
-                            <h1>Bienvenido</h1>
-                            <a href="#" class="section-btn btn btn-default smoothScroll">Iniciar Sesión</a>
+                            @yield ('titulo')
+                             @yield('contenido')
+                            </div>
+
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     </div>
 </section>

@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('inicio');
-
-
-Route::get('/inicio', 'InicioController@index')->name('inicio');
-
+    return view('layouts.inicio');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+//ruta inicio
+Route::get('/inicio', 'InicioController@index')->name('login.index');
+Route::get('/registro', 'InicioController@index')->name('registro');
+

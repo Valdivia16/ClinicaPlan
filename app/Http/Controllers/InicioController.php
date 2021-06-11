@@ -10,7 +10,7 @@ class InicioController extends Controller
     //
 
     public function index(){
-        Return view ('inicio');
+        Return view ('login.inicio');
     }
 
 }
