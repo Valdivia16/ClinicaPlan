@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.inicio');
+    return view('login.bienvenida');
+});
+Route::get('/prueba', function () {
+    return view('layouts.plantillaentrada');
 });
 
 Auth::routes();
@@ -22,5 +25,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //ruta inicio
 Route::get('/inicio', 'InicioController@index')->name('login.index');
-Route::get('/registro', 'InicioController@index')->name('registro');
+Route::get('/registro', 'UserController@create')->name('registro.crear');
+Route::get('/acercade', 'AcercadeController@index')->name('acercade');
+Route::get('/recuperar', 'Auth\ResetPasswordController@index')->name('recuperar');
 

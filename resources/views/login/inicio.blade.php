@@ -9,9 +9,7 @@
         <div class="wrap-login100 p-t-30 p-b-50"><br><br>
 
             <div class="col-xl-12">
-                <div class="cat__pages__login__block__promo text-white text-center">
-
-                </div>
+                <div class="cat__pages__login__block__promo text-white text-center"></div>
                 <div class="cat__pages__login__block__inner">
                     <div class="cat__pages__login__block__form">
                         <h4 class="text-uppercase">
@@ -59,8 +57,8 @@
                                     value="login">Iniciar Sesión
                                 </button>
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Olvidaste tu contraseña?') }}
+                                    <a class="btn btn-link" href="{{ route('recuperar') }}">
+                                        {{ __('¿Olvidaste tu contraseña?') }}
                                     </a>
                                 @endif
                             </div>

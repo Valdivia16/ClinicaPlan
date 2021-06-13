@@ -32,6 +32,7 @@ http://www.tooplate.com/view/2098-health
     background-color: rgba(0,0,0,0.4);
     position: relative;
 }
+
 .cat__pages__login__block__inner1 {
     width: auto;
     margin: 0 auto;
@@ -42,6 +43,21 @@ http://www.tooplate.com/view/2098-health
     background-color: rgba(0,0,0,0.4);
     position: relative;
 }
+
+
+.cat {
+    min-width: 35.71rem;
+    max-width: 55rem;
+    margin: 0 auto;
+    padding: 3.57rem 2.85rem 1.42rem;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.4);
+    position: relative;
+}
+
+
 .cat__pages__login__block__form {
     position: relative;
     z-index: 2;

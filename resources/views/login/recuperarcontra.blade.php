@@ -1,5 +1,12 @@
 @extends("layouts.inicio")
 @section("contenido")
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('imagen/Login.png');">
+            <div class="wrap-login100 p-t-30 p-b-50"><br><br>
+
+                <div class="col-xl-12">
+                    <div class="cat__pages__login__block__promo text-white text-center"></div>
+                    <div class="cat">
 
                         <div class="cat__pages__login__block__form">
                             <h4 class="text-uppercase">
@@ -7,7 +14,6 @@
                             </h4>
                             <br />
                             <div >
-                                <div class="form-group">{{ __('Reset Password') }}</div>
 
                                 <div class="form-group">
                                     @if (session('status'))
@@ -20,10 +26,10 @@
                                         @csrf
 
                                         <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                            <label  for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                <input placeholder="Ingrese el correo electrónico " id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -32,14 +38,10 @@
                                                 @enderror
                                             </div>
                                         </div>
-
-                                        <div class="form-actions">
-                                            <div class="col-md-6 offset-md-4">
-                                                <button type="submit" class="btn btn-primary">
-                                                    {{ __('Send Password Reset Link') }}
+                                                <button type="submit"  class="btn btn-primary " >
+                                                    {{ __('Enviar enlace de restablecimiento de contraseña') }}
                                                 </button>
-                                            </div>
-                                        </div>
+
                                     </form>
                                 </div>
                             </div>
@@ -50,5 +52,6 @@
         </div>
     </div>
 @endsection
+
 
 
