@@ -19,9 +19,9 @@
                             <form method="POST" action="{{ route('login') }}" id="form-validation" name="form-validation">
                                 @csrf
                                 <div class="form-group">
-                                    <label class="form-label">Nombre De Usuario</label>
+                                    <label class="form-label">Correo Eléctronico</label>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
-                                           placeholder="Usuario"
+                                           placeholder="Correo elèctronico"
                                            data-validation="[NOTEMPTY]">
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">

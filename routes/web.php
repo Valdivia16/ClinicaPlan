@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('login.bienvenida');
 });
 Route::get('/prueba', function () {
-    return view('layouts.plantillaentrada');
+    return view('layouts.formulario');
 });
 
 Auth::routes();
@@ -29,3 +29,5 @@ Route::get('/registro', 'UserController@create')->name('registro.crear');
 Route::get('/acercade', 'AcercadeController@index')->name('acercade');
 Route::get('/recuperar', 'Auth\ResetPasswordController@index')->name('recuperar');
 
+//paciente
+Route::get('/registroPaciente', 'RegistroPacienteController@crear')->name('registroPaciente');

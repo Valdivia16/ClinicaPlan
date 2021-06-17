@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Despacho de Capa</title>
-
+    @yield("titulo")
     <link href="{{asset("diseno/css/menu/styles.css")}}" rel="stylesheet"/>
     <link href="{{asset("diseno/css/menu/file-input.css")}}" media="all" rel="stylesheet" type="text/css"/>
     <link href="{{asset("https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css")}}" rel="stylesheet" crossorigin="anonymous"/>
@@ -22,7 +21,7 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <button class="btn btn-link order-1 order-lg-0 ml-4" id="sidebarToggle" href="#"><i class="fas fa-bars"></i>
     </button>
-    <a class="navbar-brand" href="/">Despacho de Capa</a>
+    <a class="navbar-brand" href="/"></a>
     <!-- Navbar Search-->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 
@@ -104,8 +103,6 @@
                             <a class="nav-link" href="#">Semillas</a>
                             <a class="nav-link" href="#">Vitolas</a>
                             <a class="nav-link" href="#">Inventario Diario</a>
-
-
                         </nav>
                     </div>
 
@@ -120,24 +117,6 @@
     <div id="layoutSidenav_content">
         <main>
             @yield("contenido")
-            <div class="modal fade" tabindex="-1" id="cerrarSesionModal" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Advertencia</h5>
-
-                        </div>
-                        <div class="modal-body">
-                            <p>¿Estás seguro que deseas cerrar sesión?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary"   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Si</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </main>
 
     </div>

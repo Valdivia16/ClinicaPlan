@@ -1,11 +1,11 @@
 @extends("layouts.inicio")
 @section("titulo")
-    <h1>Clínica Médica Plasencia</h1>
+    <h1>Clínica Medica Plasencia</h1>
 @endsection
 @section("contenido")
 
 <div class="limiter">
-    <div class="container-login100" style="background-image: url('imagen/Login.png');">
+    <div class="container-login100" style="background-image: url('imagen/Login.png')">
         <div class="wrap-login100 p-t-30 p-b-50"><br><br>
 
             <div class="col-xl-12">
@@ -19,9 +19,9 @@
                         <form method="POST" action="{{ route('login') }}" id="form-validation" name="form-validation">
                             @csrf
                             <div class="form-group">
-                                <label class="form-label">Nombre De Usuario</label>
+                                <label class="form-label">Correo Eléctronico</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
-                                       placeholder="Usuario"
+                                       placeholder="Correo Eléctronico"
                                        data-validation="[NOTEMPTY]">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                                     value="login">Iniciar Sesión
                                 </button>
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('recuperar') }}">
+                                    <a style="color: white" href="{{ route('recuperar') }}"><br> <br>
                                         {{ __('¿Olvidaste tu contraseña?') }}
                                     </a>
                                 @endif

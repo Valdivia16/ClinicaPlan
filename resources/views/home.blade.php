@@ -1,7 +1,10 @@
-@extends('layouts.plantillaentrada')
+@extends('layouts.plantilla')
+@section("tituloenca")
+    <h2>Clínica Medica Plasencia</h2>
 
-@section('contenido')
+@endsection
+@section('titulo')
 
-    <h1>Xavier feo</h1>
+
 
 @endsection
