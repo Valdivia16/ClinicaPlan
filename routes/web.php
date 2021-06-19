@@ -31,3 +31,7 @@ Route::get('/recuperar', 'Auth\ResetPasswordController@index')->name('recuperar'
 
 //paciente
 Route::get('/registroPaciente', 'RegistroPacienteController@crear')->name('registroPaciente');
+Route::get('/listaDepartamentos', 'RegistroPacienteController@seleccionar')->name('listaDepartamentos');
+Route::get('/listaPaciente', 'RegistroPacienteController@index')->name('listaPaciente');
+Route::get('/registroEnfermedades', 'RegistroPacienteController@index')->name('listaph');
+

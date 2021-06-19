@@ -3,6 +3,7 @@
 <head>
 
     <title>Clínica Medica Plasencia</title>
+    <link rel="icon" type="image/png" href="/diseno/images/imagen.png">
     <!--
 
     Template 2098 Health
