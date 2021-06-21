@@ -30,8 +30,12 @@ Route::get('/acercade', 'AcercadeController@index')->name('acercade');
 Route::get('/recuperar', 'Auth\ResetPasswordController@index')->name('recuperar');
 
 //paciente
-Route::get('/registroPaciente', 'RegistroPacienteController@crear')->name('registroPaciente');
-Route::get('/listaDepartamentos', 'RegistroPacienteController@seleccionar')->name('listaDepartamentos');
-Route::get('/listaPaciente', 'RegistroPacienteController@index')->name('listaPaciente');
+Route::get('/registroPaciente', 'Registro_pacienteController@crear')->name('registroPaciente');
+Route::post('/registroPaciente/crear', 'Registro_pacienteController@store')->name('registroPaciente.crear');
+Route::get('/listaDepartamentos', 'Registro_pacienteController@seleccionar')->name('listaDepartamentos');
+Route::get('/listaPaciente', 'Lista_pacienteController@index')->name('listaPaciente');
 Route::get('/registroEnfermedades', 'RegistroPacienteController@index')->name('listaph');
 
+
+Route::get('/ini', 'Registro_paiseController@crear')->name('ln.index');
+Route::post('/registro', 'Registro_paiseController@store')->name('registros');

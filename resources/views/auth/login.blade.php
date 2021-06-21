@@ -1,6 +1,6 @@
 @extends("layouts.inicio")
 @section("titulo")
-    <h1>Clínica Médica Plasencia</h1>
+    <h1>Clínica Medica Plasencia</h1>
 @endsection
 @section("contenido")
 

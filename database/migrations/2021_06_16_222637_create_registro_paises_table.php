@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegistroEnfermedadesTable extends Migration
+class CreateRegistroPaisesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateRegistroEnfermedadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('registro_enfermedades', function (Blueprint $table) {
+        Schema::create('registro_paises', function (Blueprint $table) {
             $table->id();
+            $table->string('pais');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateRegistroEnfermedadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registro_enfermedades');
+        Schema::dropIfExists('registro_paises');
     }
 }

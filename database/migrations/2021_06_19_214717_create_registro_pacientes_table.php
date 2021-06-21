@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegistroPacienteTable extends Migration
+class CreateRegistroPacientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRegistroPacienteTable extends Migration
      */
     public function up()
     {
-        Schema::create('registro_paciente', function (Blueprint $table) {
+        Schema::create('registro_pacientes', function (Blueprint $table) {
             $table->id();
             $table->string('dni')->unique();
             $table->string('nda')->unique();
@@ -21,17 +21,17 @@ class CreateRegistroPacienteTable extends Migration
             $table->string('segundoNombre');
             $table->string('primerApellido');
             $table->string('segundoApellido');
-            $table->string('pais');
+            $table->foreignId('id_pais')->references('id')->on('registro_paises');
             $table->foreignId('idDepartamento')->references('id')->on('departamentos');
             $table->foreignId('idMunicipio')->references('id')->on('municipios');
             $table->string('direccion');
+            $table->string('telefono',8)->unique();
             $table->string('nombrePadre');
             $table->string('nombreMadre');
             $table->string('fechaNacimiento');
-            $table->string('m');
-            $table->string('f');
+            $table->string('sexo');
+            $table->string('foto')->nullable();
             $table->timestamps();
-
         });
     }
 
@@ -42,6 +42,6 @@ class CreateRegistroPacienteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registro_paciente');
+        Schema::dropIfExists('registro_pacientes');
     }
 }
