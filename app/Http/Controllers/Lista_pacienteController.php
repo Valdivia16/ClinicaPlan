@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Registro_paciente;
 use Illuminate\Http\Request;
 
 class Lista_pacienteController extends Controller
@@ -12,4 +13,9 @@ class Lista_pacienteController extends Controller
 
         Return view ('paciente.listaPaciente');
     }
+
+
+
+
+
 }

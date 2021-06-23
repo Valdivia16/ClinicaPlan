@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegistroPacientesTable extends Migration
+class CreateListaPacientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRegistroPacientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('registro_pacientes', function (Blueprint $table) {
+        Schema::create('lista_pacientes', function (Blueprint $table) {
             $table->id();
             $table->string('dni')->unique();
             $table->string('nda')->unique();
@@ -38,10 +38,11 @@ class CreateRegistroPacientesTable extends Migration
     /**
      * Reverse the migrations.
      *
+     *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('registro_pacientes');
+        Schema::dropIfExists('lista_pacientes');
     }
 }

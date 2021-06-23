@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    @yield("titulo")
-    <link href="{{asset("diseno/css/menu/styles.css")}}" rel="stylesheet"/>
-    <link href="{{asset("diseno/css/menu/file-input.css")}}" media="all" rel="stylesheet" type="text/css"/>
+    <title>Despacho de Banda y Tripa</title>
+
+    <link href="{{asset("css/menu/styles.css")}}" rel="stylesheet"/>
+    <link href="{{asset("css/menu/file-input.css")}}" media="all" rel="stylesheet" type="text/css"/>
     <link href="{{asset("https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css")}}" rel="stylesheet" crossorigin="anonymous"/>
     <link href="{{asset("https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css")}}" rel="stylesheet"/>
-    <link href="{{asset("diseno/css/menu/main.css")}}">
-    <link href="{{asset("diseno/css/menu/bd-wizard.css")}}" rel="stylesheet">
+    <link href="{{asset("css/menu/main.css")}}">
+    <link href="{{asset("css/menu/bd-wizard.css")}}" rel="stylesheet">
     <link href='{{asset("https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css")}}' rel='stylesheet' />
     <link rel="stylesheet" href="{{asset("https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css")}}" type="text/css"/>
 
@@ -21,7 +22,7 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <button class="btn btn-link order-1 order-lg-0 ml-4" id="sidebarToggle" href="#"><i class="fas fa-bars"></i>
     </button>
-    <a class="navbar-brand" href="/"></a>
+    <a class="navbar-brand" href="/">Despacho de Banda y Tripa</a>
     <!-- Navbar Search-->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 
@@ -60,20 +61,21 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseinicio"
                        aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
-                        Entrega y Recepcion
+                        Salida Y Entradas
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <div class="collapse" id="collapseinicio" aria-labelledby="headingOne"
                          data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="#">Despacho De Capa</a>
-                            <a class="nav-link" href="#">Recepcion De Capa</a>
+                            <a class="nav-link" href="{{url('BultoSalida')}}">Despacho De Bulto</a>
+                            <a class="nav-link" href="{{url('ConsumoBanda')}}">Salida De Banda</a>
+                            <a class="nav-link" href="{{url('EntradaBanda')}}">Entrada Banda</a>
 
 
                         </nav>
                     </div>
                     <div class="sb-sidenav-menu-heading">Registros</div>
-                    <a class="nav-link collapsed" href="###" data-toggle="collapse" data-target="#collapseinicio2"
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseinicio2"
                        aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-pager"></i></div>
                         R. Diarios
@@ -83,13 +85,18 @@
                          data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
 
-                            <a class="nav-link" href="#"> Inventario</a>
-                            <a class="nav-link" href="#"> Resumen Diario</a>
+                            <a class="nav-link" href="{{url('InventarioDiario')}}"> Inventario De Bultos</a>
+                            <a class="nav-link" href="{{url('BultoDevuelto')}}">Bultos Devueltos</a>
+                            <a class="nav-link" href="{{url('InventarioBanda')}}"> Inventario De Banda</a>
+
+
+
 
                         </nav>
                     </div>
-                    <div class="sb-sidenav-menu-heading">Administración General</div>
-                    <a class="nav-link collapsed" href="##" data-toggle="collapse" data-target="#collapseLayouts"
+                    <div class="sb-sidenav-menu-heading"> Administracion General</div>
+
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts"
                        aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
                         General
@@ -98,11 +105,17 @@
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                          data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="#">Empleados</a>
-                            <a class="nav-link" href="#">Marcas</a>
-                            <a class="nav-link" href="#">Semillas</a>
-                            <a class="nav-link" href="#">Vitolas</a>
-                            <a class="nav-link" href="#">Inventario Diario</a>
+                            <a class="nav-link" href="{{url('empleadosBanda')}}">Empleados</a>
+                            <a class="nav-link" href="{{url('marcasBanda')}}">Marcas</a>
+                            <a class="nav-link" href="{{url('semillasBanda')}}">Semilla</a>
+                            <a class="nav-link" href="{{url('vitolaBanda')}}">Vitolas</a>
+                            <a class="nav-link" href="{{url('Procedencia')}}">Procedencia</a>
+                            <a class="nav-link" href="{{url('variedad')}}">Variedad</a>
+                            <a class="nav-link" href="{{url('InventarioInicial')}}">Inventario Diario</a>
+
+
+
+
                         </nav>
                     </div>
 
@@ -116,7 +129,26 @@
     </div>
     <div id="layoutSidenav_content">
         <main>
-            @yield("contenido")
+
+            @yield("content")
+            <div class="modal fade" tabindex="-1" id="cerrarSesionModal" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Advertencia</h5>
+
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Estás seguro que deseas cerrar sesión?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Si</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
     </div>
@@ -125,12 +157,12 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script src="diseno/js/jsmenu/scripts.js"></script>
-<script src="{{asset("diseno/js/jsmenu/bootstrap-fileinput.js")}}" type="text/javascript"></script>
-<script src="{{asset("diseno/js/jsmenu/bootstrap-fileinput-theme.js")}}" type="text/javascript"></script>
+<script src="js/jsmenu/scripts.js"></script>
+<script src="{{asset("js/jsmenu/bootstrap-fileinput.js")}}" type="text/javascript"></script>
+<script src="{{asset("js/jsmenu/bootstrap-fileinput-theme.js")}}" type="text/javascript"></script>
 
-<script src="{{asset("diseno/js/jsmenu/jquery.steps.min.js")}}"></script>
-<script src="{{asset("diseno/js/jsmenu/bd-wizard.js")}}"></script>
+<script src="{{asset("js/jsmenu/jquery.steps.min.js")}}"></script>
+<script src="{{asset("js/jsmenu/bd-wizard.js")}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="assets/demo/chart-area-demo.js"></script>
 <script src="assets/demo/chart-bar-demo.js"></script>
@@ -140,56 +172,32 @@
 
 <script src="{{asset("https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js")}}"></script>
 <script src='{{asset("https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js")}}'></script>
-<script src="{{asset("diseno/js/jsmenu/mapbox-scripts.js")}}"></script>
-<script src="{{asset("diseno/js/jsmenu/categorias.js")}}"></script>
-<script src="{{asset("diseno/js/jsmenu/font-awesome.js")}}" crossorigin="anonymous"></script>
-<script src="{{asset("diseno/js/marca.js")}}"></script>
-<script src="{{asset("diseno/js/empleado.js")}}"></script>
-<script src="{{asset("diseno/js/CapaEntrega.js")}}"></script>
-<script src="{{asset("diseno/js/CapaRecibida.js")}}"></script>
-<script src="{{asset("diseno/js/Peso.js")}}"></script>
-<script src="{{asset("diseno/js/semilla.js")}}"></script>
-<script src="{{asset("diseno/js/ReBulDiario.js")}}"></script>
-<script src="{{asset("diseno/js/ExistenciaDiario.js")}}"></script>
+<script src="{{asset("js/jsmenu/mapbox-scripts.js")}}"></script>
+<script src="{{asset("js/jsmenu/categorias.js")}}"></script>
+<script src="{{asset("js/jsmenu/font-awesome.js")}}" crossorigin="anonymous"></script>
+<script src="{{asset("js/marca.js")}}"></script>
+<script src="{{asset("js/empleado.js")}}"></script>
+<script src="{{asset("js/CapaEntrega.js")}}"></script>
+<script src="{{asset("js/CapaRecibida.js")}}"></script>
+<script src="{{asset("js/Peso.js")}}"></script>
+<script src="{{asset("js/semilla.js")}}"></script>
+<script src="{{asset("js/ReBulDiario.js")}}"></script>
 
 
-
-<script>
-    $(document).ready(function () {
-        $(".empresa2").select2({
-            theme: "classic",
-            placeholder: "Seleccione una opción"
-        });
-
-        $(".disponible2").select2({
-            theme: "classic",
-            placeholder: "Seleccione una opción"
-        });
-    });
-</script>
 <script>
     $(document).ready(function () {
         $(".tipoCategoria").select2({
             theme: "classic",
             placeholder: "Seleccione una opción"
         });
-        $(".empleado").select2({
+        $(".empresa").select2({
             theme: "classic",
             placeholder: "Seleccione una opción"
         });
-        $(".vitola").select2({
+        $(".disponible").select2({
             theme: "classic",
             placeholder: "Seleccione una opción"
         });
-        $(".semilla").select2({
-            theme: "classic",
-            placeholder: "Seleccione una opción"
-        });
-        $(".calidad").select2({
-            theme: "classic",
-            placeholder: "Seleccione una opción"
-        });
-
         $(".marca").select2({
             theme: "classic",
             placeholder: "Seleccione una opción"
@@ -199,4 +207,3 @@
 
 </body>
 </html>
-

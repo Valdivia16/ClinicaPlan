@@ -12,9 +12,19 @@
 @section("contenido")
     <div class="container-fluid" >
         <div class="card card-body">
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="container-fluid">
+
                 <div class="container" id="advanced-search-form">
-                    <form method="post" action="{{route("registroPaciente.crear")}}"
+                    <form method="post" action="{{route("registroPaciente.crear")}}" enctype="multipart/form-data"
                           enctype="multipart/form-data">
                         @csrf
                         <div>
@@ -25,11 +35,12 @@
 
                             <div class="form-group col-md-3">
                                 <label for="dni">DNI</label>
-                                <input  type="number"  class="form-control @error('dni') is-invalid @enderror" placeholder="Ingrese el DNI" id="dni"  name="dni" >
+                                <input  type="number"  class="form-control @error('dni') is-invalid @enderror"
+                                        placeholder="Ingrese el DNI" id="dni"  name="dni"  required >
                             </div>
                             <div class="form-group col-md-3 ">
                                 <label for="nda">Número de Afiliación</label>
-                                <input type="text" class="form-control @error('nda') is-invalid @enderror" placeholder="Ingrese el Número de Afiliación" id="nda" name="nda">
+                                <input type="text" class="form-control @error('nda') is-invalid @enderror" placeholder="Ingrese el Número de Afiliación" id="nda" name="nda" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="telefono">Télefono</label>
@@ -37,21 +48,34 @@
                                        placeholder="Ingrese el número telefónico" id="telefono" name="telefono">
                             </div>
 
-                            <div class="profile-userpic col-md-3 col-xs-12 col-sm-3" style="margin-left: 8%">
-                                <a
-                                    data-toggle="modal" data-target="#modalBorrarApertura">
-                                    <img style="text-align: right" src="diseno/images/pacientes/"
-                                         onerror="this.src='diseno/images/doctora.jpg'" width="100"
-                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                                </a>
-                            </div>
+                            <div class="form-group col-md-4">
+
+                                <!-- don't give a name === doesn't send on POST/GET -->
+                                <span class="input-group-btn">
+                                <!-- image-preview-clear button -->
+                                <img type="button" class="btn btn-outline-danger image-preview-clear"
+                                        style="display:none;">
+                                    <span class="fas"></span> Borrar
+                                </img>
+                                    <!-- image-preview-input -->
+                                <div class="btn btn-default image-preview-input">
+                                    <span class="fas "></span>
+                                    <span class="image-preview-input-title">Subir foto</span>
+                                    <input src="diseno/images/doctora.jpg"
+                                           onerror="this.src='diseno/images/doctora.jpg'" width="100"
+                                           class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" type="file" accept="image/png, image/jpeg, image/gif"
+                                           name="foto"/>
+                                    <!-- rename it -->
+                                </div>
+                            </span>
+                            </div><!-- /input-group image-preview [TO HERE]-->
 
                         </div>
                      <div class="col-md-12 col-sm-12 col-lg-12">
                         <div class="form-group col-md-4">
                             <label for="primerNombre">Primer Nombre</label>
                             <input type="text" class="form-control @error('primerNombre') is-invalid @enderror"
-                                   placeholder="Ingrese el Primer nombre" id="primerNombre" name="primerNombre">
+                                   placeholder="Ingrese el Primer nombre" id="primerNombre" name="primerNombre" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="segundoNombre">Segundo Nombre</label>
@@ -62,17 +86,19 @@
                         <div class="form-group col-md-4">
                             <label for="primerApellido">Primer Apellido</label>
                             <input type="text" class="form-control @error('primerApellido') is-invalid @enderror"
-                                   placeholder="Ingrese el Primer Apellido" id="primerApellido" name="primerApellido">
+                                   placeholder="Ingrese el Primer Apellido" id="primerApellido" name="primerApellido" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="segundoApellido">Segundo Apellido</label>
                             <input type="text" class="form-control @error('segundoApellido') is-invalid @enderror"
-                                   placeholder="Ingrese el segundo Apellido" id="segundoApellido" name="segundoApellido">
+                                   placeholder="Ingrese el segundo Apellido" id="segundoApellido" name="segundoApellido" >
                             <br>
                         </div>
                         </div>
                         <div>
-                        <div style="margin-top: 20%">
+
+
+                            <div style="margin-top: 20%">
                             <h3 style="text-align: center">Datos personales</h3>
                         </div>
 
@@ -120,7 +146,7 @@
                         <div class="form-group form-group col-md-3 col-sm-3 col-lg-3">
                             <label for="direccion">Dirección</label>
                             <input type="text" class="form-control @error('direccion') is-invalid @enderror"
-                                   placeholder="Ingrese la dirección" id="direccion"  name="direccion">
+                                   placeholder="Ingrese la dirección" id="direccion"  name="direccion" required>
                         </div>
                             </div>
                     <div class="col-md-12 col-sm-12 col-lg-12">
@@ -137,7 +163,7 @@
                         <div class="form-group col-md-3 col-sm-3 col-lg-3">
                             <label for="fechaNacimiento">Fecha de nacimiento</label>
                             <input type="date" class="form-control @error('fechaNacimiento') is-invalid @enderror"
-                                   id="fechaNacimiento" name="fechaNacimiento">
+                                   id="fechaNacimiento" name="fechaNacimiento" required>
                         </div>
 
                         <div class="form-group col-md-3 col-sm-3 col-lg-3">

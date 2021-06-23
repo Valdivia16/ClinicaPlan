@@ -31,11 +31,24 @@ Route::get('/recuperar', 'Auth\ResetPasswordController@index')->name('recuperar'
 
 //paciente
 Route::get('/registroPaciente', 'Registro_pacienteController@crear')->name('registroPaciente');
+//guarda registro
 Route::post('/registroPaciente/crear', 'Registro_pacienteController@store')->name('registroPaciente.crear');
+Route::put('/paciente/{id}/editar', 'Registro_pacienteController@edit')->name('editarPaciente');
+Route::get('/paciente/{id}/editado', 'Registro_pacienteController@indexEditar')->name('pacienteEditado');
+
+Route::get('/paciente/editar', 'Registro_pacienteController@list')->name('listaPaciente');
 Route::get('/listaDepartamentos', 'Registro_pacienteController@seleccionar')->name('listaDepartamentos');
-Route::get('/listaPaciente', 'Lista_pacienteController@index')->name('listaPaciente');
+
 Route::get('/registroEnfermedades', 'RegistroPacienteController@index')->name('listaph');
 
 
 Route::get('/ini', 'Registro_paiseController@crear')->name('ln.index');
 Route::post('/registro', 'Registro_paiseController@store')->name('registros');
+
+
+//lista paciente
+
+Route::get('/listaPaciente', 'Lista_pacienteController@index')->name('listaPaciente');
+
+
+

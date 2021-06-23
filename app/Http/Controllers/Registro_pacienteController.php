@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class Registro_pacienteController extends Controller
 {
     public function index(){
-        $pacientes = RegistroPaciente::all();
+        $pacientes = Registro_paciente::all();
         Return view ('paciente.listaPaciente',compact("pacientes"));
     }
 
@@ -27,47 +27,86 @@ class Registro_pacienteController extends Controller
             ->with('sexos',$sexos)
             ->with('municipios',$municipios);
     }
+    //crear usuario
     public function store(Request $request){
-      /*  $this->validate($request,[
-            "dni"=>"required|numeric|max:13|min:13|unique",
-            "nda"=>"required|max:14|min:14|unique",
-            "telefono"=>"required|numeric|max:8|min:8|unique",
-            "primerNombre"=>"required|max:100|min:3",
-            "segundoNombre"=>"required|max:100|min:3",
-            "primerApellido"=>"required|max:100|min:3",
-            "segundoApellido"=>"required|max:100|min:3",
-            "id_pais"=>"required",
-            "idDepartamento"=>"required",
-            "idMunicipio"=>"required",
-            "direccion"=>"required|max:250|min:3",
-            "nombrePadre"=>"required|max:250|min:3",
-            "nombreMadre"=>"required|max:250|min:3",
-            "fechaNacimiento"=>"required",
-            "sexo"=>"required",
 
-            //"telefono"=>"required|numeric|min:10000000|max:99999999|unique:clientes,telefono"
-        ],[
-            "dni.required"=>"Campo vacío",
-            "dni.max"=>"EL campo debe de tener 13 dígitos",
-            "dni.min"=>"EL campo debe de tener 13 dígitos",
-            "nda.required"=>"Campo vacío",
-            "telefono.required"=>"Campo vacío",
-            "primerNombre.requerid"=>"Campo vacío",
-            "segundoNombre"=>"Campo vacío",
-            "primerApellido.requerid"=>"Campo vacío",
-            "segundoApellido"=>"Campo vacío",
-            "id_pais.requerid"=>"Campo vacío",
-            "idDepartamento.requerid"=>"Campo vacío",
-            "idMunicipio.requerid"=>"Campo vacío",
-            "direccion.requerid"=>"Campo vacío",
-            "nombrePadre"=>"Campo vacío",
-            "nombreMadre"=>"Campo vacío",
-            "fechaNacimiento.requerid"=>"Campo vacío",
-            "sexo.requerid"=>"Campo vacío",
-        ]);
-*/
+        /*  $validator=$this->validate($request,[
+                 "dni"=>"required|numeric|max:13|min:13|unique",
+                 "nda"=>"required|max:14|min:14|unique",
+                 "telefono"=>"numeric|max:8|min:8|unique",
+                 "primerNombre"=>"required|string|max:100|min:3",
+                 "segundoNombre"=>"max:100|string|min:3",
+                 "primerApellido"=>"required|string|max:100|min:3",
+                 "segundoApellido"=>"max:100|string|min:3",
+                 "id_pais"=>"required",
+                 "idDepartamento"=>"required",
+                 "idMunicipio"=>"required",
+                 "direccion"=>"required|max:250|min:3",
+                 "nombrePadre"=>"max:250|min:3",
+                 "nombreMadre"=>"max:250|min:3",
+                 "fechaNacimiento"=>"required",
+                 "sexo"=>"required",
+
+             ]);
+   $this->validate($request,[
+              "dni"=>"required|numeric|max:13|min:13|unique",
+              "nda"=>"required|max:14|min:14|unique",
+              "telefono"=>"numeric|max:8|min:8|unique",
+              "primerNombre"=>"required|max:100|min:3",
+              "segundoNombre"=>"max:100|min:3",
+              "primerApellido"=>"required|max:100|min:3",
+              "segundoApellido"=>"max:100|min:3",
+              "id_pais"=>"required",
+              "idDepartamento"=>"required",
+              "idMunicipio"=>"required",
+              "direccion"=>"required|max:250|min:3",
+              "nombrePadre"=>"max:250|min:3",
+              "nombreMadre"=>"max:250|min:3",
+              "fechaNacimiento"=>"required",
+              "sexo"=>"required",
+
+              //"telefono"=>"required|numeric|min:10000000|max:99999999|unique:clientes,telefono"
+          ],[
+              "dni.required"=>"Campo vacío",
+              "dni.max"=>"EL campo debe de tener 13 dígitos",
+              "dni.min"=>"EL campo debe de tener 13 dígitos",
+              "nda.required"=>"Campo vacío",
+              "telefono"=>"Campo vacío",
+              "primerNombre.requerid"=>"Campo vacío",
+              "segundoNombre"=>"Campo vacío",
+              "primerApellido.requerid"=>"Campo vacío",
+              "segundoApellido"=>"Campo vacío",
+              "id_pais.requerid"=>"Campo vacío",
+              "idDepartamento.requerid"=>"Campo vacío",
+              "idMunicipio.requerid"=>"Campo vacío",
+              "direccion.requerid"=>"Campo vacío",
+              "nombrePadre"=>"Campo vacío",
+              "nombreMadre"=>"Campo vacío",
+              "fechaNacimiento.requerid"=>"Campo vacío",
+              "sexo.requerid"=>"Campo vacío",
+          ]);
+  */
+        $nombre = $request->input("dni");
+
+
+
+        $path = public_path() . '/foto';//Carpeta publica de las imagenes
+
+        //-------------VALIDAR SI LA CARPETA EXISTE---------------------
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        if ($request->foto) {
+            $imagen = $_FILES["foto"]["name"];
+            $ruta = $_FILES["foto"]["tmp_name"];
+            $destino = "foto/".$nombre. $imagen;
+            copy($ruta, $destino);
+        }
 
         $registroPacientes = new Registro_paciente();
+
+        $registroPacientes->foto = $nombre.$imagen;
         $registroPacientes->dni=$request->input("dni");
         $registroPacientes->nda=$request->input("nda");
         $registroPacientes->primerNombre=$request->input("primerNombre");
@@ -85,8 +124,57 @@ class Registro_pacienteController extends Controller
         $registroPacientes->telefono=$request->input("telefono");
         $registroPacientes->save();
 
-        return redirect()->route("home")->with("Primer paso completado");
+        //return response()->json($registroPacientes );
+       return redirect()->route("home")->with("Primer paso completado");
 
     }
+
+
+    public function indexEditar($id){
+        $paciente = Registro_paciente::findOrFail($id);
+        $paises = Registro_paise::all();
+        $departamentos = Departamento::all();
+        $municipios = Municipio::all();
+        $sexos = Sexo::all();
+        Return view ('paciente.formulario1Edirar')
+            ->with('pacientes', $paciente)
+              ->with('departamentos',$departamentos)
+                ->with('paises',$paises)
+                ->with('sexos',$sexos)
+                ->with('municipios',$municipios);
+
+    }
+
+    //editar
+
+
+
+    public function edit(Request $request , $id)
+    {
+
+        $registroPacientes = Registro_paciente::findOrFail($id);
+        $registroPacientes->dni=$request->input("dni");
+        $registroPacientes->nda=$request->input("nda");
+        $registroPacientes->primerNombre=$request->input("primerNombre");
+        $registroPacientes->segundoNombre=$request->input("segundoNombre");
+        $registroPacientes->primerApellido=$request->input("primerApellido");
+        $registroPacientes->segundoApellido=$request->input("segundoApellido");
+        $registroPacientes->id_pais=$request->input("id_pais");
+        $registroPacientes->idDepartamento=$request->input("idDepartamento");
+        $registroPacientes->idMunicipio=$request->input("idMunicipio");
+        $registroPacientes->direccion=$request->input("direccion");
+        $registroPacientes->nombrePadre=$request->input("nombrePadre");
+        $registroPacientes->nombreMadre=$request->input("nombreMadre");
+        $registroPacientes->fechaNacimiento=$request->input("fechaNacimiento");
+        $registroPacientes->sexo=$request->input("sexo");
+        $registroPacientes->telefono=$request->input("telefono");
+        $registroPacientes->save();
+
+        return redirect()->route("home")->withExito("Se editó correctamente");
+
+    }
+
+
+    //lista usuario
 
 }
