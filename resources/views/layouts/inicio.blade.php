@@ -62,12 +62,6 @@
         <!-- MENU LINKS -->
         <div class="collapse navbar-collapse">
         <!-- <a href="#" class="navbar-brand"><img width="60px" height="60px" src="diseno/images/plasencia.png" class="img-responsive" alt="" align="left"></a>-->
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{route('login.index')}}" class="smoothScroll">Iniciar Sesión</a></li>
-            <li><a href="{{route('registro.crear')}}" class="smoothScroll">Registro</a></li>
-            <li><a href="{{route('acercade')}}">Acerca de</a></li>
-
-        </ul>
     </div>
 
     </div>

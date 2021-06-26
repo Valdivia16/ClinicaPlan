@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Bootstrap Data Table with Filter Row Feature</title>
+    <title>Clínica Medica Plasencia</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -143,8 +143,8 @@
                 <tr data-status="inactive">
                     <td></td>
                     <td>HTA</td>
-                    <td></td>
-                    <td></td>
+                    <td><label class="checkbox-inline" id="htasi"><input id="htasi"type="checkbox" value=""></label></td>
+                    <td><label class="checkbox-inline" id="htano"><input id="htano" type="checkbox" value=""></label></td>
 
                 </tr>
                 <tr data-status="active">

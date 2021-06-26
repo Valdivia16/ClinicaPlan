@@ -9,11 +9,12 @@
 @section('contenido')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Bootstrap Data Table with Filter Row Feature</title>
+    <title>Clínica Medica Plasencia</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -90,9 +91,19 @@
             background: #2e9c81;
         }
     </style>
-<a class="btn btn-success" href="{{url('/form')}}">Registrar Paciente</a>
-    <div class="pagination pagination-sm">
 
+    @if(session('pacienteEliminado'))
+        <div class="alert alert-success">
+            {{session('pacienteEliminado')}}}
+        </div>
+        @endif
+<a class="btn btn-success" href="{{url('/registroPaciente')}}">Registrar Paciente</a>
+    <div class="pagination pagination-sm">
+        @if(session('pacienteEliminado'))
+            <div class="alert alert-success">
+                {{session('pacienteEliminado')}}}
+            </div>
+        @endif
         <form  class="d-none d-md-inline-block form-inline
                            ml-auto mr-0 mr-md-2 my-0 my-md-0 mb-md-2">
             <div class="input-group" style="width: 300px">
@@ -105,8 +116,6 @@
                 </div>
             </div>
         </form>
-
-
     </div>
     <div class="container-xl">
         <div class="table-responsive">
@@ -128,33 +137,97 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Género</th>
-                        <th>Visualizar</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th>Acciones</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
 @foreach( $paciente as $pacientes)
 
     <td>{{$noPagina++}}</td>
-
     <td>{{$pacientes->dni}}</td>
     <td>{{$pacientes->nda}}</td>
     <td>{{$pacientes->primerNombre }} </td>
     <td> {{$pacientes->primerApellido }} </td>
     <td>{{$pacientes->nombre_sexo}}</td>
-    <td><a href="#" class="btn btn-sm  btn-success">Visualizar</a></td>
+    <td>
+        <form action="{{route('mostrarPaciente',$pacientes->id)}}">
+            <button href= "{{route( 'mostrarPaciente',$pacientes->id)}}" class="btn btn-sm  btn-success">
+                <i class="fas fa-eye"></i>
+            </button>
+        </form>
 
+    </td>
 
-    <td><a href= "{{route( 'pacienteEditado',['id'=>$pacientes->id])}}" class="btn btn-sm  btn-warning">Editar</a></td>
+    <td>
+        <form action="{{route( 'pacienteEditado',['id'=>$pacientes->id])}}">
+            <button href= "{{route( 'pacienteEditado',['id'=>$pacientes->id])}}" class="btn btn-sm  btn-primary">
+                <i class="fas fa-edit"></i>
+            </button>
+        </form>
 
+    </td>
+    <td><form action="{{route('borrarPaciente',$pacientes->id)}}"
+              class="d-inline formulario-eliminar"
+              method="POST">
+         @csrf @method('DELETE')
+            <button class="d-inline formulario-eliminar btn btn-danger">
+                <i class="fas fa-trash-alt"></i>
 
-    <td><a href="#" class="btn btn-sm  btn-danger">Eliminar</a></td>
+            </button>
+        </form>
+    </td>
                     </tbody>
+
     @endforeach
 
                 </table>
+
             </div>
+
         </div>
-    </div>
+
+
 @endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                '¡Eliminado!',
+                'El paciente ha sido elimminado.',
+                'continuar',
+            )
+        </script>
+        @endif
+
+    <script>
+
+        $('.formulario-eliminar').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Está seguro que desea borrar el paciente registrado?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, bórralo!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                        this.submit();
+                    Swal.fire(
+                        '¡Eliminado!',
+                        'El paciente ha sido elimminado.',
+                        'Continuar',
+                    )
+
+                }
+            })
+        })
+    </script>
+@endsection
+

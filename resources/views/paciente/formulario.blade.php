@@ -31,12 +31,14 @@
                             <h3 style="text-align: center">Identificación</h3>
                             <br>
                         </div>
+                        <!-- /input-group image-preview [TO HERE]-->
+
+
                         <div class="col-md-12 col-sm-12 col-lg-12">
 
-                            <div class="form-group col-md-3">
-                                <label for="dni">DNI</label>
-                                <input  type="number"  class="form-control @error('dni') is-invalid @enderror"
-                                        placeholder="Ingrese el DNI" id="dni"  name="dni"  required >
+                            <div class="form-group col-md-3 ">
+                                <label for="nda">Número de identidad</label>
+                                <input type="number" class="form-control @error('dni') is-invalid @enderror" placeholder="Ingrese el Número de identidad" id="dni" name="dni" required>
                             </div>
                             <div class="form-group col-md-3 ">
                                 <label for="nda">Número de Afiliación</label>
@@ -48,27 +50,6 @@
                                        placeholder="Ingrese el número telefónico" id="telefono" name="telefono">
                             </div>
 
-                            <div class="form-group col-md-4">
-
-                                <!-- don't give a name === doesn't send on POST/GET -->
-                                <span class="input-group-btn">
-                                <!-- image-preview-clear button -->
-                                <img type="button" class="btn btn-outline-danger image-preview-clear"
-                                        style="display:none;">
-                                    <span class="fas"></span> Borrar
-                                </img>
-                                    <!-- image-preview-input -->
-                                <div class="btn btn-default image-preview-input">
-                                    <span class="fas "></span>
-                                    <span class="image-preview-input-title">Subir foto</span>
-                                    <input src="diseno/images/doctora.jpg"
-                                           onerror="this.src='diseno/images/doctora.jpg'" width="100"
-                                           class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" type="file" accept="image/png, image/jpeg, image/gif"
-                                           name="foto"/>
-                                    <!-- rename it -->
-                                </div>
-                            </span>
-                            </div><!-- /input-group image-preview [TO HERE]-->
 
                         </div>
                      <div class="col-md-12 col-sm-12 col-lg-12">
@@ -177,12 +158,40 @@
 
                             </select>
 
-                            <button
-                                type="submit" class="btn btn-primary mr-3" name="login"
-                                value="login">Siguiente
-                            </button>
+
                         </div>
                     </div>
+                        </div>
+                        <div class="form-group col-md-12 col-sm-12 col-lg-12">
+
+                            <!-- don't give a name === doesn't send on POST/GET -->
+                            <span class="input-group-btn ">
+                                <!-- image-preview-clear button -->
+                                <img type="button" class="btn btn-outline-danger image-preview-clear"
+                                     style="display:none;">
+                                    <span class="fas"></span> Borrar
+                                </img>
+                                <!-- image-preview-input -->
+                                <div class="btn btn-default image-preview-input " style="text-align: center">
+                                    <span class="fas "></span>
+                                    <img src="diseno/images/doctora.jpg" alt="" class="img-fluid rounded-circle" style="text-align: justify">
+                                    <span class="image-preview-input-title"></span>
+                                    <input src="diseno/images/doctora.jpg"
+                                           onerror="this.src='diseno/images/doctora.jpg'" width="100"
+                                           class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" type="file" accept="image/png, image/jpeg, image/gif"
+                                           name="foto"/>
+                                    <!-- rename it -->
+                                </div>
+                            </span>
+
+
+                        </div>
+
+                        <div class="form-group">
+                        <button
+                            type="submit" class="btn btn-primary mr-3" name="login"
+                            value="login" style="text-align-all: right">Siguiente
+                        </button>
                         </div>
                     </form>
 

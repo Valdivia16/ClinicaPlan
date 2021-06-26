@@ -44,7 +44,7 @@ class HomeController extends Controller
             ->orderBy("registro_pacientes.primerNombre")
             //  ->whereDate("capa_entregas.created_at","=" ,Carbon::now()->format('Y-m-d'))
 ->get();
-        Return view ('home')->withPaciente($paciente)->withNoPagina(1);
+        Return view ('home')->withPaciente($paciente)->withNoPagina(10);
 
     }
 

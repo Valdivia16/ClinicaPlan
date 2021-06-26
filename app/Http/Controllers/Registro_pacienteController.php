@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 class Registro_pacienteController extends Controller
 {
     public function index(){
-        $pacientes = Registro_paciente::all();
+        $pacientes = Registro_paciente::orderBy('id')->paginate(3);
+
         Return view ('paciente.listaPaciente',compact("pacientes"));
     }
 
@@ -144,14 +145,17 @@ class Registro_pacienteController extends Controller
                 ->with('municipios',$municipios);
 
     }
+//mostrar datos
+    public function mostrar(){
+           $paciente = Registro_paciente::all();
+        return view('paciente.formularioVisualizar', compact('paciente'));
+    }
+
 
     //editar
 
-
-
     public function edit(Request $request , $id)
     {
-
         $registroPacientes = Registro_paciente::findOrFail($id);
         $registroPacientes->dni=$request->input("dni");
         $registroPacientes->nda=$request->input("nda");
@@ -173,8 +177,15 @@ class Registro_pacienteController extends Controller
         return redirect()->route("home")->withExito("Se editó correctamente");
 
     }
+//eliminar
+    public function borrarPaciente($id){
+       Registro_paciente::destroy($id);
 
 
-    //lista usuario
+        return redirect()->route("home")
+            ->withExito("Se eliminó exitosamente el paciente");
+
+    }
+
 
 }

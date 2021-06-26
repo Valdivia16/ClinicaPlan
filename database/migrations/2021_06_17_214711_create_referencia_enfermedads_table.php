@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReferenciaEnfermedadesTable extends Migration
+class CreateReferenciaEnfermedadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateReferenciaEnfermedadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('referencia_enfermedades', function (Blueprint $table) {
+        Schema::create('referencia_enfermedads', function (Blueprint $table) {
             $table->id();
             $table->string("codigo");
-            $table->string("descripción");
+            $table->string("descripcion");
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateReferenciaEnfermedadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('referencia_enfermedades');
+        Schema::dropIfExists('referencia_enfermedads');
     }
 }

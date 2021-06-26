@@ -47,17 +47,17 @@
             <img src="diseno/images/doctora.jpg" alt="" class="img-fluid rounded-circle">
             <p class="text-light" style="text-align:center">{{Auth::user()->email}}</p>
 
-
         </div>
 
         <nav id="navbar" class="nav-menu navbar">
             <ul>
-                <li><a href="{{route('home')}}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Inicio</span></a></li>
+                <li><a href="{{route('home')}}" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Inicio</span></a></li>
                 <li><a href="{{route('registroPaciente')}}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Registro de Pacientes</span></a></li>
+                <li><a href="{{route('registro.crear')}}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Registro Usuarios</span></a></li>
                 <li><a href="{{route('listaPaciente')}}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Lista de Pacientes</span></a></li>
-                <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Código de referencia de <br>enfermedades</span></a></li>
+                <li><a href="{{route('referenciaEnfermedad')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Código de referencia de <br>enfermedades</span></a></li>
                 <li><a href="#services" class="nav-link scrollto"><i class="bx bx-archive"></i> <span>Invenatrio de médicamentos</span></a></li>
-                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                <li><a class="nav-link scrollto" href="{{ route('logout') }}"
                          onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="bx bx-chevron-left"></i>
                         {{ __('Cerrar Sesión') }}
                     </a>
@@ -119,6 +119,8 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script src="{{asset('js/app.js')}}"></script>
+@yield('js')
 
 </body>
 

@@ -1,4 +1,5 @@
-insert into referencia_enfermedades(id,codigo,descripcion,created_at,updated_at) values
+INSERT INTO `referencia_enfermedads` (`id`,`codigo`,`descripcion`,`created_at`,`updated_at`) VALUES
+
 (1,'A00','Cólera','2021-04-28 20:51:58','2021-04-28 20:51:58'),
 (2,'A00.0','Cólera debido a Vibrio cholerae 01, biotipo cholerae','2021-04-28 20:51:58','2021-04-28 20:51:58'),
 (3,'A00.1','Cólera debido a Vibrio cholerae 01, biotipo El Tor','2021-04-28 20:51:58','2021-04-28 20:51:58'),
