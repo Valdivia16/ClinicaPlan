@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //ruta inicio
 Route::get('/inicio', 'InicioController@index')->name('login.index');
-Route::get('/registro', 'UserController@create')->name('registro.crear');
 Route::get('/acercade', 'AcercadeController@index')->name('acercade');
 Route::get('/recuperar', 'Auth\ResetPasswordController@index')->name('recuperar');
 
@@ -39,3 +39,9 @@ Route::get('/registroEnfermedades', 'RegistroPacienteController@index')->name('l
 
 Route::get('/ini', 'Registro_paiseController@crear')->name('ln.index');
 Route::post('/registro', 'Registro_paiseController@store')->name('registros');
+//----------------------------------usuarios---------------------------------------------------//
+Route::get('usuarios',[UserController::class,'index'])->name('usuario.index');
+Route::get('usuarios/{id}/editar',[UserController::class,'editar'])->name('usuario.editar');
+Route::get('/registro','UserController@create')->name('registro.crear');
+Route::post('usuarios/{id}/editar',[UserController::class,'update'])->name('usuario.update');
+
