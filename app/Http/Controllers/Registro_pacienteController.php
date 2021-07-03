@@ -8,6 +8,7 @@ use App\Registro_paciente;
 use App\Registro_paise;
 use App\Sexo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Registro_pacienteController extends Controller
 {
@@ -146,8 +147,14 @@ class Registro_pacienteController extends Controller
 
     }
 //mostrar datos
-    public function mostrar(){
-           $paciente = Registro_paciente::all();
+    public function mostrar(Request $request, $id){
+        $paciente= DB::table('registro_pacientes as rp')
+            ->join("sexos as s","rp.sexo",'s.id')
+            ->join('registro_paises as p','id_pais','p.id')
+            ->join('departamentos as d','idDepartamento','d.id')
+            ->join('municipios as m','idMunicipio','m.id')
+            ->select('p.pais','d.departamento','m.municipio','rp.*','s.sexo')
+            ->where('rp.id','=',$id)->paginate(20);
         return view('paciente.formularioVisualizar', compact('paciente'));
     }
 
@@ -181,10 +188,8 @@ class Registro_pacienteController extends Controller
     public function borrarPaciente($id){
        Registro_paciente::destroy($id);
 
-
         return redirect()->route("home")
             ->withExito("Se eliminó exitosamente el paciente");
-
     }
 
 

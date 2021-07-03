@@ -16,7 +16,7 @@
 
         body {
             color: #566787;
-            background: #f5f5f5;
+
             font-family: 'Roboto', sans-serif;
         }
         .table-responsive {
@@ -24,7 +24,7 @@
         }
         .table-wrapper {
             width: 850px;
-            background: #fff;
+
             margin: 0 auto;
             padding: 20px 30px 5px;
             box-shadow: 0 0 1px 0 rgba(0,0,0,.25);
@@ -49,7 +49,7 @@
             background: rgb(0, 50, 74);
             margin: -20px -31px 10px;
             padding: 15px 30px;
-            color: #fff;
+
         }
         .table-title h2 {
             margin: 2px 0 0;
@@ -87,31 +87,24 @@
         table.table td .btn.manage:hover {
             background: #2e9c81;
         }
+
+        .par {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .pare {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .box{
+
+        }
     </style>
-    <script>
-        $(document).ready(function(){
-            $(".btn-group .btn").click(function(){
-                var inputValue = $(this).find("input").val();
-                if(inputValue != 'all'){
-                    var target = $('table tr[data-status="' + inputValue + '"]');
-                    $("table tbody tr").not(target).hide();
-                    target.fadeIn();
-                } else {
-                    $("table tbody tr").fadeIn();
-                }
-            });
-            // Changing the class of status label to support Bootstrap 4
-            var bs = $.fn.tooltip.Constructor.VERSION;
-            var str = bs.split(".");
-            if(str[0] == 4){
-                $(".label").each(function(){
-                    var classStr = $(this).attr("class");
-                    var newClassStr = classStr.replace(/label/g, "badge");
-                    $(this).removeAttr("class").addClass(newClassStr);
-                });
-            }
-        });
-    </script>
+
 @endsection
 @section("contenido")
 
@@ -120,61 +113,300 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-6"><h2>Antecendentes</h2></div>
+                    <div  style="color: white"><h2>Antecendentes</h2></div>
+                    <br>
+                </div>
+                <br>
+                <div class="accordion" id="app">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                              APP
+                            </button>
+                        </h2>
+
+                        <div id="flush-collapseOne" class="accordion-collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body par">
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="htp">
+                                    <label class="form-check-label" for="flexCheckDefault">HTP</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="dm">
+                                    <label class="form-check-label" for="flexCheckDefault">DM</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="ab">
+                                    <label class="form-check-label" for="flexCheckDefault">Asma/Bronquial</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="ca">
+                                    <label class="form-check-label" for="flexCheckDefault">Cardiópatia</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="hipe">
+                                    <label class="form-check-label" for="flexCheckDefault">Hipertirodea</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="depe">
+                                    <label class="form-check-label" for="flexCheckDefault">Depresión</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="vih">
+                                    <label class="form-check-label" for="flexCheckDefault">VIH</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="taba">
+                                    <label class="form-check-label" for="flexCheckDefault">Tabaquismo</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="ede">
+                                    <label class="form-check-label" for="flexCheckDefault">Uso de esteroides</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="aco">
+                                    <label class="form-check-label" for="flexCheckDefault">Uso de Aco</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="alco">
+                                    <label class="form-check-label" for="flexCheckDefault">Alcohol</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="drogas">
+                                    <label class="form-check-label" for="flexCheckDefault">Drogas</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="tvp">
+                                    <label class="form-check-label" for="flexCheckDefault">TVP</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="otro">
+                                    <label class="form-check-label" for="flexCheckDefault">Otro</label>
+                                </div>
+
+                            </div>
+                            <div class="col-12">
+                            <label>Observaciones: </label>
+                            <div class="col-12">
+                                   <textarea class="form-control col-sm-12" name="descripcionapp" id= "descripcionapp"></textarea>
+                                <br>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                APF
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse show" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body par">
+
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="dia">
+                                    <label class="form-check-label" for="flexCheckDefault">Diabetes</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="epi">
+                                    <label class="form-check-label" for="flexCheckDefault">Epilepsia</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="aler">
+                                    <label class="form-check-label" for="flexCheckDefault">Alergias</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="otro">
+                                    <label class="form-check-label" for="flexCheckDefault">Otro</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label>Observaciones: </label>
+                                <div class="col-12">
+                                    <textarea class="form-control col-sm-12" name="descripcionapf" id= "descripcionapf"></textarea>
+                                    <br>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                Quirúrgicos y Traumáticos
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+
+                            <div class="accordion-body">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="aler">
+                                    <label class="form-check-label" for="flexCheckDefault">Si</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="aler">
+                                    <label class="form-check-label" for="flexCheckDefault">No</label>
+                                </div>
+                                <div class="col-12">
+                                    <label>Observaciones: </label>
+                                    <div class="col-12">
+                                        <textarea class="form-control col-sm-12" name="descripcionapf" id= "descripcionapf"></textarea>
+                                        <br>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingfive">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefive" aria-expanded="false" aria-controls="flush-collapsefive">
+                                Alérgicos
+                            </button>
+                        </h2>
+                        <div id="flush-collapsefive" class="accordion-collapse collapse show" aria-labelledby="flush-headingfive" data-bs-parent="#accordionFlushExample">
+
+                            <div class="accordion-body">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="aler">
+                                    <label class="form-check-label" for="flexCheckDefault">Si</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="aler">
+                                    <label class="form-check-label" for="flexCheckDefault">No</label>
+                                </div>
+                                <div class="col-12">
+                                    <label>Observaciones: </label>
+                                    <div class="col-12">
+                                        <textarea class="form-control col-sm-12" name="descripcionapf" id= "descripcionapf"></textarea>
+                                        <br>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item ">
+                        <h2 class="accordion-header" id="flush-headingfour">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
+                               HGO
+                            </button>
+                        </h2>
+                        <div id="flush-collapsefour" class="accordion-collapse collapse show" aria-labelledby="flush-headingfour" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body pare">
+
+                            <div class="col-12 pare">
+                                <div class="accordion-body" >
+                                    <label>Embarazos</label>
+                                    <input type="number" name="emba">
+                                </div>
+                            </div>
+
+                            <div class="col-12 pare">
+                                <div class="accordion-body">
+                                    <label>Partos</label>
+                                    <input type="number" name="partos">
+
+                                </div>
+                            </div>
+
+                            <div class="col-12 pare">
+                                <div class="accordion-body">
+                                    <label>Cesearias</label>
+                                    <input type="number" name="cesaria">
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 pare">
+                                <div class="accordion-body">
+                                    <label>Hijos Vivos</label>
+                                    <input type="number" name="hijovivo">
+                                </div>
+                            </div>
+
+                            <div class="col-12 pare">
+                                    <div class="accordion-body">
+                                    <label>Emb. Actual</label>
+                                    <input type="checkbox" name="emba">
+                                    </div>
+                                </div>
+
+                                     <div class="col-12 pare">
+                                         <div class="accordion-body">
+                                        <label>Lactando</label>
+                                         <input  type="checkbox" name="laca">
+                                         </div>
+                                     </div>
+
+                                <div class="col-12 pare">
+                                    <div class="accordion-body">
+                                        <label>Citología</label>
+                                        <input  type="checkbox" name="laca">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 ">
+                                    <div class="accordion-body">
+                                        <label>Fecha de última mestruación</label>
+                                        <input  class="form-control" type="date" name="laca">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12">
+                                <label>Observaciones: </label>
+                                <div class="col-12">
+                                    <textarea class="form-control col-sm-12" name="descripcionapf" id= "descripcionapf"></textarea>
+                                    <br>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <BR>
+                <div class="form-group"  >
+                    <button
+                        type="submit" class="btn btn-primary " name="login"
+                        value="login"
+                    >Guardar
+                    </button>
                 </div>
             </div>
-            <table class="table table-striped table-hover ">
-                <thead>
-                <tr>
-                    <th>Patología</th>
-                    <td></td>
-                    <th>Si</th>
-                    <th>No</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr data-status="active">
-                    <td>APP</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="#" class="btn btn-sm manage">Agregar</a></td>
-                </tr>
-                <tr data-status="inactive">
-                    <td></td>
-                    <td>HTA</td>
-                    <td><label class="checkbox-inline" id="htasi"><input id="htasi"type="checkbox" value=""></label></td>
-                    <td><label class="checkbox-inline" id="htano"><input id="htano" type="checkbox" value=""></label></td>
 
-                </tr>
-                <tr data-status="active">
-                    <td>3</td>
-                    <td><a href="#">convallissed.com</a></td>
-                    <td>11/05/2015</td>
-                    <td><span class="label label-success">Active</span></td>
-                    <td>United Kingdom</td>
-                    <td><a href="#" class="btn btn-sm manage">Manage</a></td>
-                </tr>
-                <tr data-status="expired">
-                    <td>4</td>
-                    <td><a href="#">phasellusri.org</a></td>
-                    <td>06/09/2016</td>
-                    <td><span class="label label-danger">Expired</span></td>
-                    <td>Romania</td>
-                    <td><a href="#" class="btn btn-sm manage">Manage</a></td>
-                </tr>
-                <tr data-status="inactive">
-                    <td>5</td>
-                    <td><a href="#">facilisleo.com</a></td>
-                    <td>12/08/2017</td>
-                    <td><span class="label label-warning">Inactive</span></td>
-                    <td>Germany</td>
-                    <td><a href="#" class="btn btn-sm manage">Manage</a></td>
-                </tr>
-                </tbody>
-            </table>
         </div>
     </div>
+
 </div>
+
 @endsection
 

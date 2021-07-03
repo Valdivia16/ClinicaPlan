@@ -20,7 +20,8 @@ Route::get('/prueba', function () {
     return view('layouts.formulario');
 });
 */
-Auth::routes();
+Auth::routes(['verify' => true]);
+
 Route::get('/inicio', 'InicioController@index')->name('login.index');
 Route::get('/', 'HomeController@index')->name('home');
 //ruta inicio
@@ -45,6 +46,17 @@ Route::get('/registroEnfermedades', 'RegistroPacienteController@index')->name('l
 Route::get('/ini', 'Registro_paiseController@crear')->name('ln.index');
 Route::post('/registro', 'Registro_paiseController@store')->name('registros');
 
+//formulario dos
+Route::get('/formularioDos', 'FormularioDoController@index')->name('formularioDos');
+Route::get('/formularioDosBusqueda', 'FormularioDoController@busqueda')->name('formularioDosBusqueda');
+Route::post('/formularioDos/crear', 'FormularioDoController@store')->name('formularioDos.crear');
+Route::put('/editarformularioDos/editar', 'FormularioDoController@edit')->name('editarformularioDos');
+Route::get('/formularioDosEditado/editado', 'FormularioDoController@indexEditar')->name('formularioDosEditado');
+Route::delete('/borrarformularioDos','FormularioDoController@borrarEnfermedad')->name("borrarformularioDos");
+
+
+
+
 
 //lista paciente
 
@@ -54,9 +66,16 @@ Route::get('/listaPaciente', 'Lista_pacienteController@index')->name('listaPacie
 Route::get('/referenciaEnfermedades', 'ReferenciaEnfermedadController@index')->name('referenciaEnfermedad');
 Route::get('/referenciaBusqueda', 'ReferenciaEnfermedadController@busqueda')->name('referenciaBusqueda');
 Route::post('/crearReferencia/crear', 'ReferenciaEnfermedadController@store')->name('crearReferencia.crear');
-Route::put('/editarReferencia/{id}/editar', 'ReferenciaEnfermedadController@edit')->name('editarReferencia');
-Route::get('/referencia{id}/editado', 'ReferenciaEnfermedadController@indexEditar')->name('referenciaEditado');
+Route::put('/editarReferencia/editar', 'ReferenciaEnfermedadController@edit')->name('editarReferencia');
+Route::get('/referencia/editado', 'ReferenciaEnfermedadController@indexEditar')->name('referenciaEditado');
 Route::delete('/borrarEnfermedad','ReferenciaEnfermedadController@borrarEnfermedad')->name("borrarEnfermedad");
+
+//inventario
+Route::get('/inventario', 'InventarioController@index')->name('inventario');
+
+Route::get('/perfil', 'RegisterController@index')->name('perfil');
+Route::put('/editarPerfil/editar', 'RegisterController@edit')->name('editarPerfil');
+Route::get('/perfil/editado', 'RegisterController@indexEditar')->name('perfilEditado');
 
 
 

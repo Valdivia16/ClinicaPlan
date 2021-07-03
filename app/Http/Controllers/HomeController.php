@@ -27,24 +27,16 @@ class HomeController extends Controller
     public function index(Request $request){
       //  $paciente['pacientes']= Registro_paciente::paginate()ñ
 
-        if ($request){
-            $query = trim($request->get("search"));
-        }
+        $busqueda = $request->input("busqueda");
+        $paciente= DB::table('registro_pacientes as rp')
+            ->join("sexos as s","rp.sexo",'s.id')
+            ->select('rp.id','rp.dni','rp.nda','primerNombre','primerApellido','s.sexo')
+            ->where("dni","like","%".$request->input
+            ("busqueda")."%")->paginate(20);
 
-        $paciente=DB::table("registro_pacientes")
-            ->leftJoin("sexos","registro_pacientes.sexo","=","sexos.id")
-
-            ->select("registro_pacientes.id",
-                "registro_pacientes.dni",
-                "registro_pacientes.nda",
-                "registro_pacientes.primerNombre"
-                ,"registro_pacientes.primerApellido",
-                "registro_pacientes.sexo" ,"sexos.sexo as nombre_sexo")
-            ->where("registro_pacientes.dni","Like","%".$query."%")
-            ->orderBy("registro_pacientes.primerNombre")
-            //  ->whereDate("capa_entregas.created_at","=" ,Carbon::now()->format('Y-m-d'))
-->get();
-        Return view ('home')->withPaciente($paciente)->withNoPagina(10);
+        Return view ('home')
+            ->with('paciente', $paciente)
+            ->with("busqueda",$busqueda);
 
     }
 

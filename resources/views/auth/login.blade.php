@@ -1,6 +1,7 @@
 @extends("layouts.inicio")
 @section("titulo")
     <h1>Clínica Medica Plasencia</h1>
+    <h3>Clasificadora y exportadora de tabaco S.A </h3>
 @endsection
 @section("contenido")
 
@@ -21,7 +22,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Correo Eléctronico</label>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
-                                           placeholder="Correo elèctronico"
+                                           placeholder="Correo eléctronico"
                                            data-validation="[NOTEMPTY]">
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">

@@ -7,79 +7,196 @@ use Illuminate\Http\Request;
 
 class FormularioDoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $formularioDo= FormularioDo::orderBy('id')->paginate(3);
+
+        Return view('paciente.formularioDos', compact("formularioDo"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function crear()
     {
-        //
+        $paises = Registro_paise::all();
+        $departamentos = Departamento::all();
+        $municipios = Municipio::all();
+        $sexos = Sexo::all();
+        Return view('paciente.formulario')
+            ->with('departamentos', $departamentos)
+            ->with('paises', $paises)
+            ->with('sexos', $sexos)
+            ->with('municipios', $municipios);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //crear usuario
     public function store(Request $request)
     {
-        //
+
+        /*  $validator=$this->validate($request,[
+                 "dni"=>"required|numeric|max:13|min:13|unique",
+                 "nda"=>"required|max:14|min:14|unique",
+                 "telefono"=>"numeric|max:8|min:8|unique",
+                 "primerNombre"=>"required|string|max:100|min:3",
+                 "segundoNombre"=>"max:100|string|min:3",
+                 "primerApellido"=>"required|string|max:100|min:3",
+                 "segundoApellido"=>"max:100|string|min:3",
+                 "id_pais"=>"required",
+                 "idDepartamento"=>"required",
+                 "idMunicipio"=>"required",
+                 "direccion"=>"required|max:250|min:3",
+                 "nombrePadre"=>"max:250|min:3",
+                 "nombreMadre"=>"max:250|min:3",
+                 "fechaNacimiento"=>"required",
+                 "sexo"=>"required",
+
+             ]);
+   $this->validate($request,[
+              "dni"=>"required|numeric|max:13|min:13|unique",
+              "nda"=>"required|max:14|min:14|unique",
+              "telefono"=>"numeric|max:8|min:8|unique",
+              "primerNombre"=>"required|max:100|min:3",
+              "segundoNombre"=>"max:100|min:3",
+              "primerApellido"=>"required|max:100|min:3",
+              "segundoApellido"=>"max:100|min:3",
+              "id_pais"=>"required",
+              "idDepartamento"=>"required",
+              "idMunicipio"=>"required",
+              "direccion"=>"required|max:250|min:3",
+              "nombrePadre"=>"max:250|min:3",
+              "nombreMadre"=>"max:250|min:3",
+              "fechaNacimiento"=>"required",
+              "sexo"=>"required",
+
+              //"telefono"=>"required|numeric|min:10000000|max:99999999|unique:clientes,telefono"
+          ],[
+              "dni.required"=>"Campo vacío",
+              "dni.max"=>"EL campo debe de tener 13 dígitos",
+              "dni.min"=>"EL campo debe de tener 13 dígitos",
+              "nda.required"=>"Campo vacío",
+              "telefono"=>"Campo vacío",
+              "primerNombre.requerid"=>"Campo vacío",
+              "segundoNombre"=>"Campo vacío",
+              "primerApellido.requerid"=>"Campo vacío",
+              "segundoApellido"=>"Campo vacío",
+              "id_pais.requerid"=>"Campo vacío",
+              "idDepartamento.requerid"=>"Campo vacío",
+              "idMunicipio.requerid"=>"Campo vacío",
+              "direccion.requerid"=>"Campo vacío",
+              "nombrePadre"=>"Campo vacío",
+              "nombreMadre"=>"Campo vacío",
+              "fechaNacimiento.requerid"=>"Campo vacío",
+              "sexo.requerid"=>"Campo vacío",
+          ]);
+  */
+        $nombre = $request->input("dni");
+
+
+        $path = public_path() . '/foto';//Carpeta publica de las imagenes
+
+        //-------------VALIDAR SI LA CARPETA EXISTE---------------------
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        if ($request->foto) {
+            $imagen = $_FILES["foto"]["name"];
+            $ruta = $_FILES["foto"]["tmp_name"];
+            $destino = "foto/" . $nombre . $imagen;
+            copy($ruta, $destino);
+        }
+
+        $formularioDo = new FormularioDo();
+
+        $formularioDo->foto = $nombre . $imagen;
+        $formularioDo->dni = $request->input("dni");
+        $formularioDo->nda = $request->input("nda");
+        $formularioDo->primerNombre = $request->input("primerNombre");
+        $formularioDo->segundoNombre = $request->input("segundoNombre");
+        $formularioDo->primerApellido = $request->input("primerApellido");
+        $formularioDo->segundoApellido = $request->input("segundoApellido");
+        $formularioDo->id_pais = $request->input("id_pais");
+        $formularioDo->idDepartamento = $request->input("idDepartamento");
+        $formularioDo->idMunicipio = $request->input("idMunicipio");
+        $formularioDo->direccion = $request->input("direccion");
+        $formularioDo->nombrePadre = $request->input("nombrePadre");
+        $formularioDo->nombreMadre = $request->input("nombreMadre");
+        $formularioDo->fechaNacimiento = $request->input("fechaNacimiento");
+        $formularioDo->sexo = $request->input("sexo");
+        $formularioDo->telefono = $request->input("telefono");
+        $formularioDo->save();
+
+        //return response()->json($registroPacientes );
+        return redirect()->route("home")->with("Primer paso completado");
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\FormularioDo  $formularioDo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FormularioDo $formularioDo)
+
+    public function indexEditar($id)
     {
-        //
+        $paciente = Registro_paciente::findOrFail($id);
+        $paises = Registro_paise::all();
+        $departamentos = Departamento::all();
+        $municipios = Municipio::all();
+        $sexos = Sexo::all();
+        Return view('paciente.formulario1Edirar')
+            ->with('pacientes', $paciente)
+            ->with('departamentos', $departamentos)
+            ->with('paises', $paises)
+            ->with('sexos', $sexos)
+            ->with('municipios', $municipios);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\FormularioDo  $formularioDo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(FormularioDo $formularioDo)
+//mostrar datos
+    public function mostrar(Request $request, $id)
     {
-        //
+        $paciente = DB::table('registro_pacientes as rp')
+            ->join("sexos as s", "rp.sexo", 's.id')
+            ->join('registro_paises as p', 'id_pais', 'p.id')
+            ->join('departamentos as d', 'idDepartamento', 'd.id')
+            ->join('municipios as m', 'idMunicipio', 'm.id')
+            ->select('p.pais', 'd.departamento', 'm.municipio', 'rp.*', 's.sexo')
+            ->where('rp.id', '=', $id)->paginate(20);
+        return view('paciente.formularioVisualizar', compact('paciente'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\FormularioDo  $formularioDo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, FormularioDo $formularioDo)
+
+    //editar
+
+    public function edit(Request $request, $id)
     {
-        //
+        $registroPacientes = Registro_paciente::findOrFail($id);
+        $registroPacientes->dni = $request->input("dni");
+        $registroPacientes->nda = $request->input("nda");
+        $registroPacientes->primerNombre = $request->input("primerNombre");
+        $registroPacientes->segundoNombre = $request->input("segundoNombre");
+        $registroPacientes->primerApellido = $request->input("primerApellido");
+        $registroPacientes->segundoApellido = $request->input("segundoApellido");
+        $registroPacientes->id_pais = $request->input("id_pais");
+        $registroPacientes->idDepartamento = $request->input("idDepartamento");
+        $registroPacientes->idMunicipio = $request->input("idMunicipio");
+        $registroPacientes->direccion = $request->input("direccion");
+        $registroPacientes->nombrePadre = $request->input("nombrePadre");
+        $registroPacientes->nombreMadre = $request->input("nombreMadre");
+        $registroPacientes->fechaNacimiento = $request->input("fechaNacimiento");
+        $registroPacientes->sexo = $request->input("sexo");
+        $registroPacientes->telefono = $request->input("telefono");
+        $registroPacientes->save();
+
+        return redirect()->route("home")->withExito("Se editó correctamente");
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\FormularioDo  $formularioDo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(FormularioDo $formularioDo)
+//eliminar
+    public function borrarPaciente($id)
     {
-        //
+        Registro_paciente::destroy($id);
+
+        return redirect()->route("home")
+            ->withExito("Se eliminó exitosamente el paciente");
     }
+
+
+
+
 }

@@ -16,15 +16,15 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: iPortfolio - v3.3.0
@@ -44,19 +44,24 @@
     <div class="d-flex flex-column">
 
         <div class="profile">
-            <img src="diseno/images/doctora.jpg" alt="" class="img-fluid rounded-circle">
-            <p class="text-light" style="text-align:center">{{Auth::user()->email}}</p>
+            <a href="{{route('perfil')}}">
+            <img type="button"  src="/diseno/images/doctora.jpg" alt="" class="img-fluid rounded-circle">
+                <p class="text-light" style="text-align:center">{{Auth::user()->email}}</p>
+            </a>
 
         </div>
 
         <nav id="navbar" class="nav-menu navbar">
             <ul>
                 <li><a href="{{route('home')}}" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Inicio</span></a></li>
-                <li><a href="{{route('registroPaciente')}}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Registro de Pacientes</span></a></li>
                 <li><a href="{{route('registro.crear')}}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Registro Usuarios</span></a></li>
-                <li><a href="{{route('listaPaciente')}}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Lista de Pacientes</span></a></li>
+                <li><a href="{{route('registroPaciente')}}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Registro de Pacientes</span></a></li>
+                <li><a href="{{route('listaPaciente')}}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Registro de patología</span></a></li>
+                <li><a href="" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Registro de Atención Médica</span></a></li>
+                <li><a href="" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Historial del Paciente</span></a></li>
                 <li><a href="{{route('referenciaEnfermedad')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Código de referencia de <br>enfermedades</span></a></li>
-                <li><a href="#services" class="nav-link scrollto"><i class="bx bx-archive"></i> <span>Invenatrio de médicamentos</span></a></li>
+                <li><a href="{{route('inventario')}}" class="nav-link scrollto"><i class="bx bx-archive"></i> <span>Invenatrio de médicamentos</span></a></li>
+                <li><a href="" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Informes</span></a></li>
                 <li><a class="nav-link scrollto" href="{{ route('logout') }}"
                          onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="bx bx-chevron-left"></i>
                         {{ __('Cerrar Sesión') }}
@@ -107,19 +112,21 @@
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-<script src="assets/vendor/purecounter/purecounter.js"></script>
-<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="assets/vendor/typed.js/typed.min.js"></script>
-<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/assets/vendor/php-email-form/validate.js"></script>
+<script src="/assets/vendor/purecounter/purecounter.js"></script>
+<script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/vendor/typed.js/typed.min.js"></script>
+<script src="/assets/vendor/waypoints/noframework.waypoints.js"></script>
 
 <!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 <script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/referencia.js')}}"></script>
+<script src="{{asset('js/perfil.js')}}"></script>
 @yield('js')
 
 </body>

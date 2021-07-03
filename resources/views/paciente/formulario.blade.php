@@ -38,16 +38,17 @@
 
                             <div class="form-group col-md-3 ">
                                 <label for="nda">Número de identidad</label>
-                                <input type="number" class="form-control @error('dni') is-invalid @enderror" placeholder="Ingrese el Número de identidad" id="dni" name="dni" required>
+                                <input type="number"      max="9999999999999" class="form-control @error('dni') is-invalid @enderror" placeholder="Ingrese el Número de identidad" id="dni" name="dni" required>
                             </div>
                             <div class="form-group col-md-3 ">
                                 <label for="nda">Número de Afiliación</label>
-                                <input type="text" class="form-control @error('nda') is-invalid @enderror" placeholder="Ingrese el Número de Afiliación" id="nda" name="nda" required>
+                                <input type="text" max="99999999999999" class="form-control @error('nda') is-invalid @enderror" placeholder="Ingrese el Número de Afiliación" id="nda" name="nda" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="telefono">Télefono</label>
-                                <input type="number" class="form-control @error('telefono') is-invalid @enderror"
+                                <input type="number"      max="99999999" class="form-control @error('telefono') is-invalid @enderror"
                                        placeholder="Ingrese el número telefónico" id="telefono" name="telefono">
+
                             </div>
 
 
@@ -194,7 +195,6 @@
                         </button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

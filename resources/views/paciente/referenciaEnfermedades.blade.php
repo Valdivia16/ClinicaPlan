@@ -117,7 +117,7 @@
                        aria-label="busqueda">
                 <div class="input-group-append">
                     <a id="borrarBusqueda" class="btn btn-danger hideClearSearch" style="color: white"
-                       href="{{route("referenciaBusqueda")}}">&times;</a>
+                       href="{{route("referenciaEnfermedad")}}">&times;</a>
                     <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                 </div>
             </div>
@@ -149,25 +149,28 @@
                     <td>{{$registroEnfermedades->codigo}}</td>
                     <td>{{$registroEnfermedades->descripcion}}</td>
                     <td>
-                        <form >
-                            <button  class="btn btn-sm  btn-primary">
+
+                            <button  class="btn btn-sm  btn-primary"
+                                id="editarReferencia{{$registroEnfermedades->id}}"
+                                data-toggle="modal"
+                                data-target="#modalEditar"
+                                 data-descripcion="{{$registroEnfermedades->descripcion}}"
+                                 data-id="{{$registroEnfermedades->id}}"
+                                data-codigo="{{$registroEnfermedades->codigo}}"
+                                title="Editar">
                                 <i class="fas fa-edit "></i>
                             </button>
-                        </form>
                     </td>
 
                     <td>
-                        <form >
                             <button class="btn btn-sm  btn-danger"
-
                                     title="Borrar"
                                     data-toggle="modal"
-                                    data-target="#modalBorrarMarca"
-                                    data-id="{{$registroEnfermedades->codigo}}"
-                                    data-name="{{$registroEnfermedades->descripcion}}">
+                                    data-target="#modalBorrar"
+                                    data-id="{{$registroEnfermedades->id}}"
+                                    data-descripcion="{{$registroEnfermedades->descripcion}}">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
-                        </form>
                     </td>
 
                 </tbody>
@@ -195,10 +198,10 @@
                         <div class="form-group">
                             <label for="codigo">Código:</label>
                             <input type="text"
-                                   class="form-control @error('name') is-invalid @enderror"
+                                   class="form-control @error('codigo') is-invalid @enderror"
                                    name="codigo" id="codigo" maxlength="30"
                                    value="{{old('codigo')}}" required>
-                            @error('name')
+                            @error('codigo')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -206,12 +209,12 @@
                         </div>
                         <div class="form-group">
                             <label for="descripcion" >Descripción:</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror"
+                            <textarea class="form-control @error('descripcion') is-invalid @enderror"
                                       name="descripcion"
                                       id= "descripcion"
-                                      maxlength="300">
-                            {{Request::old('description')}}</textarea>
-                            @error('description')
+                                      >
+                            {{Request::old('descripcion')}}</textarea>
+                            @error('descripcion')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -231,23 +234,22 @@
 
 
     <div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-dialog " role="document">
             <div class="modal-content">
                 <form method="post" action="{{route("borrarEnfermedad")}}" enctype="multipart/form-data">
                     @method("DELETE")
                     @csrf
                     <div class="modal-header" style="background: #2a2a35">
-                        <h5 class="modal-title" style="color: white"><span class="fas fa-trash"></span> Borrar  referencia de enfermedad
-                        </h5>
+                        <h5 class="modal-title" style="color: white"><span class="fas fa-trash"></span> Borrar  referencia de enfermedad</h5>
                     </div>
                     <div class="modal-body">
-                        <p>¿Estás seguro que deseas borrar la refencia <label
-                                id="codigo"></label>? </p>
+                        <p>¿Estás seguro que deseas borrar la refencia label <label
+                            id="descripcion"></label>? <p>
                     </div>
                     <div class="modal-footer">
                         <input id="id" name="id" type="hidden" value="">
                         <button type="submit" class="btn btn-danger">Borrar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
                     </div>
                 </form>
             </div>
@@ -256,6 +258,57 @@
     </div>
 
 
+    <!--Modal editar-->
+
+
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #2a2a35">
+                    <h5 class="modal-title" style="color: white"><span class="fas fa-pencil-alt"></span> Editar referencia
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span style="color: white" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{route("editarReferencia")}}" enctype="multipart/form-data">
+                    @method('PUT');
+                    @csrf
+                    <div class="modal-body" style="object-fit: fill">
+                        <div class="form-group">
+                            <label for="codigo">Código:</label>
+                            <input required="required" type="text"
+                                   class="form-control
+                                 @error('codigo') is-invalid @enderror" name="codigo" id="codigo" maxlength="30"
+                                   value="{{old('codigo')}}">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message}}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div>
+                        <label for="descripcion" >Descripción: </label>
+                        <textarea class="form-control @error('description') is-invalid @enderror"
+                                  name="descripcion"
+                                  id="descripcion"
+                        >{{Request::old('descripcion')}}</textarea>
+                        @error('descripcion')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" id="id">
+                        <button type="submit" class="btn btn-success" >Editar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -280,20 +333,6 @@
             $("#modalReferencia").modal('hide')
         });
 //cerrar modal
-
-
-$('#modalBorrar').on('show.bs.modal', function (e) {
-var button = $(e.relatedTarget);
-var id = button.data('id');
-var codigo= button.data('codigo');
-
-var modal=$(this);
-modal.find('.modal-footer #id').val(id);
-modal.find('.modal-body #codigo').text(codigo);
-modal.find('.modal-body #descripcion').text(descripcion);
-});
-
-
         $('.formulario-eliminar').submit(function(e) {
             e.preventDefault();
             Swal.fire({

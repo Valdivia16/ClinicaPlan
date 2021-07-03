@@ -13,16 +13,22 @@ class ReferenciaEnfermedadController extends Controller
     public function busqueda(Request $request){
         $busqueda = $request->input("busqueda");
         $registroEnfermedad = ReferenciaEnfermedad::where("descripcion","like","%".$request->input
-            ("busqueda")."%")->paginate(20);
+            ("busqueda")."%");
 
         return view("paciente.referenciaEnfermedades")->with("busqueda",$busqueda)->with("registroEnfermedad",$registroEnfermedad);
     }
 
-    public function index(){
-        $registroEnfermedad = ReferenciaEnfermedad::all();
+    public function index(Request $request){
+        $registroEnfermedad = ReferenciaEnfermedad::paginate(20);
+
+        $busqueda = $request->input("busqueda");
+        $registroEnfermedad = ReferenciaEnfermedad::where("descripcion","like","%".$request->input
+            ("busqueda")."%")->paginate(20);
+
 
         Return view ('paciente.referenciaEnfermedades')
-            ->with('registroEnfermedad', $registroEnfermedad);
+            ->with('registroEnfermedad', $registroEnfermedad)
+            ->with("busqueda",$busqueda);
 
     }
 
@@ -72,10 +78,10 @@ $this->validate($request,[
 
     //editar
 
-    public function edit(Request $request , $id)
+    public function edit(Request $request)
 
     {
-        $registroEnfermedad = ReferenciaEnfermedad::findOrFail($id);
+        $registroEnfermedad = ReferenciaEnfermedad::findOrFail($request->id);
         $registroEnfermedad->codigo=$request->input("codigo");
         $registroEnfermedad->descripcion=$request->input("descripcion");
         $registroEnfermedad->save();
@@ -85,14 +91,18 @@ $this->validate($request,[
 
     }
 //eliminar
-    public function borrarEnfermedad($id){
-        ReferenciaEnfermedad::destroy($id);
+    public function borrarEnfermedad(Request $request){
 
 
+        $registroEnfermedad= $request->input('id');
+        $borrar =  ReferenciaEnfermedad::findOrFail($registroEnfermedad);
+
+        $borrar->delete();
         return redirect()->route("referenciaEnfermedad")
-            ->withExito("Se eliminó exitosamente el paciente");
+            ->withExito("Se eliminó exitosamente la referencia");
 
     }
+
 
 
 }

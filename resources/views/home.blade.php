@@ -1,6 +1,6 @@
 @extends('layouts.plantilla')
 @section("tituloenca")
-    <h2>Clínica Medica Plasencia</h2>
+    <h2><strong>Clínica Medica Plasencia</strong></h2>
 
 @endsection
 @section('titulo')
@@ -107,8 +107,8 @@
         <form  class="d-none d-md-inline-block form-inline
                            ml-auto mr-0 mr-md-2 my-0 my-md-0 mb-md-2">
             <div class="input-group" style="width: 300px">
-                <input class="form-control" name="search" type="search" placeholder="Buscar DNI"
-                       aria-label="Search">
+                <input class="form-control" name="busqueda" type="busqueda" placeholder="Buscar DNI"
+                       aria-label="busqueda">
                 <div class="input-group-append">
                     <a id="borrarBusqueda" class="btn btn-danger hideClearSearch" style="color: white"
                        href="{{route("home")}}">&times;</a>
@@ -145,12 +145,12 @@
                     <tbody>
 @foreach( $paciente as $pacientes)
 
-    <td>{{$noPagina++}}</td>
+    <td>{{$pacientes->id}}</td>
     <td>{{$pacientes->dni}}</td>
     <td>{{$pacientes->nda}}</td>
     <td>{{$pacientes->primerNombre }} </td>
     <td> {{$pacientes->primerApellido }} </td>
-    <td>{{$pacientes->nombre_sexo}}</td>
+    <td>{{$pacientes->sexo}}</td>
     <td>
         <form action="{{route('mostrarPaciente',$pacientes->id)}}">
             <button href= "{{route( 'mostrarPaciente',$pacientes->id)}}" class="btn btn-sm  btn-success">
@@ -185,7 +185,9 @@
                 </table>
 
             </div>
-
+        <div class="pagination pagination-sm justify-content-center">
+            {{$paciente->links("pagination::bootstrap-4")}}
+        </div>
         </div>
 
 
