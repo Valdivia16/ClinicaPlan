@@ -16,7 +16,7 @@ class CreateReferenciaEnfermedadsTable extends Migration
         Schema::create('referencia_enfermedads', function (Blueprint $table) {
             $table->id();
             $table->string("codigo");
-            $table->string("descripcion");
+            $table->string("descripcion",500);
             $table->timestamps();
         });
 
@@ -13835,8 +13835,10 @@ INSERT INTO `referencia_enfermedads` (`id`, `codigo`, `descripcion`, `created_at
 	(13805, 'Z99.9', 'Dependencia de máquina y dispositivo capacitante, no especificada', '2021-04-28 20:51:58', '2021-04-28 20:51:58');
 /*!40000 ALTER TABLE `referencia_enfermedads` ENABLE KEYS */;
 END");
-    }
 
+
+    	DB::unprepared("call referenciaEnfermedad();");
+    }
     /**
      * Reverse the migrations.
      *
