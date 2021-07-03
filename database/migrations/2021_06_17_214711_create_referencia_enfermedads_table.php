@@ -21,9 +21,10 @@ class CreateReferenciaEnfermedadsTable extends Migration
         });
 
         DB::unprepared("
+CREATE PROCEDURE `referenciaEnfermedad`()
 
--- Volcando datos para la tabla clinicaplacensia.referencia_enfermedads: ~0 rows (aproximadamente)
-DELETE FROM `referencia_enfermedads`;
+BEGIN
+
 /*!40000 ALTER TABLE `referencia_enfermedads` DISABLE KEYS */;
 INSERT INTO `referencia_enfermedads` (`id`, `codigo`, `descripcion`, `created_at`, `updated_at`) VALUES
 	(1, 'A00', 'Cólera', '2021-04-28 20:51:58', '2021-04-28 20:51:58'),
@@ -13832,7 +13833,8 @@ INSERT INTO `referencia_enfermedads` (`id`, `codigo`, `descripcion`, `created_at
 	(13803, 'Z99.3', 'Dependencia de silla de ruedas', '2021-04-28 20:51:58', '2021-04-28 20:51:58'),
 	(13804, 'Z99.8', 'Dependencia de otras máquinas y dispositivos capacitantes', '2021-04-28 20:51:58', '2021-04-28 20:51:58'),
 	(13805, 'Z99.9', 'Dependencia de máquina y dispositivo capacitante, no especificada', '2021-04-28 20:51:58', '2021-04-28 20:51:58');
-");
+/*!40000 ALTER TABLE `referencia_enfermedads` ENABLE KEYS */;
+END");
     }
 
     /**
