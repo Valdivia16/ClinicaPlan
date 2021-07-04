@@ -14,4 +14,6 @@ class UserController extends Controller
         $users= User::all();
         return view('auth.register')->with('users',$users)->with('roles',$roles);
     }
+
+
 }

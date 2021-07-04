@@ -108,7 +108,7 @@ class Registro_pacienteController extends Controller
 
         $registroPacientes = new Registro_paciente();
 
-        $registroPacientes->foto = $nombre.$imagen;
+        $registroPacientes->foto =  $path."/".$nombre.$imagen;
         $registroPacientes->dni=$request->input("dni");
         $registroPacientes->nda=$request->input("nda");
         $registroPacientes->primerNombre=$request->input("primerNombre");

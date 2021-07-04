@@ -1,13 +1,7 @@
 @extends("layouts.plantilla")
-@section("tituloenca")
-    <h2 style="text-align:center">Registro del Paciente</h2>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <title>Registro Paciente</title>
-    </head>
+@section("titulo")
+    <title style="text-align:center">Registro del Paciente</title>
+
     @endsection
 @section("contenido")
     <div class="container-fluid" >
