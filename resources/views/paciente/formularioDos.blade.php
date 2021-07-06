@@ -341,8 +341,15 @@
 
                                     <div class="col-12 pare">
                                         <div class="accordion-body">
-                                            <label>Cesaarias</label>
+                                            <label>Cesarias</label>
                                             <input type="number" name="cesaria" id="cesaria">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 pare">
+                                        <div class="accordion-body">
+                                            <label>Abortos</label>
+                                            <input type="number" name="aborto" id="aborto">
                                         </div>
                                     </div>
 
@@ -353,6 +360,18 @@
                                             <input type="number" name="hijovivo">
                                         </div>
                                     </div>
+                                        <div class="col-12 pare">
+                                        <div class="accordion-body" >
+                                            <label>Método de planificación</label>
+                                            <select name="pla"
+                                                    class="disponible form-control @error('disponible') is-invalid @enderror" id="disponible">
+                                                <option disabled selected value="pla">Seleccione </option>
+                                                @foreach($formularioDo as $formularioDos)
+                                                    <option value="">{{$formularioDos->pla}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
 
                                     <div class="col-12 pare">
                                         <div class="accordion-body">
@@ -360,7 +379,6 @@
                                             <input type="checkbox" name="embaActual" id="embaActual">
                                         </div>
                                     </div>
-
                                     <div class="col-12 pare">
                                         <div class="accordion-body">
                                             <label>Lactando</label>

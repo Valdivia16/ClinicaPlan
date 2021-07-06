@@ -26,6 +26,16 @@ Route::get('/inicio', 'InicioController@index')->name('login.index');
 Route::get('/', 'HomeController@index')->name('home');
 //ruta inicio
 
+//registro usuario
+
+Route::get('/registro', 'RegistroUsuarioController@index')->name('registro.crear');
+Route::post('/registroUser/crear', 'RegistroUsuarioController@store')->name('registroUser.crear');
+Route::get('/perfil', 'RegistroUsuarioController@index')->name('perfil');
+Route::put('/editarPerfil/editar', 'RegistroUsuarioController@edit')->name('editarPerfil');
+Route::get('/perfil/editado', 'RegistroUsuarioController@indexEditar')->name('perfilEditado');
+
+
+
 Route::get('/registro', 'UserController@create')->name('registro.crear');
 Route::get('/acercade', 'AcercadeController@index')->name('acercade');
 Route::get('/recuperar', 'Auth\ResetPasswordController@index')->name('recuperar');
@@ -73,9 +83,6 @@ Route::delete('/borrarEnfermedad','ReferenciaEnfermedadController@borrarEnfermed
 //inventario
 Route::get('/inventario', 'InventarioController@index')->name('inventario');
 
-Route::get('/perfil', 'RegisterController@index')->name('perfil');
-Route::put('/editarPerfil/editar', 'RegisterController@edit')->name('editarPerfil');
-Route::get('/perfil/editado', 'RegisterController@indexEditar')->name('perfilEditado');
 
 
 

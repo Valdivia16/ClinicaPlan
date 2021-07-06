@@ -15,114 +15,57 @@ class FormularioDoController extends Controller
         Return view('paciente.formularioDos', compact("formularioDo"));
     }
 
-    public function crear()
-    {
-        $paises = Registro_paise::all();
-        $departamentos = Departamento::all();
-        $municipios = Municipio::all();
-        $sexos = Sexo::all();
-        Return view('paciente.formulario')
-            ->with('departamentos', $departamentos)
-            ->with('paises', $paises)
-            ->with('sexos', $sexos)
-            ->with('municipios', $municipios);
-    }
+
 
     //crear usuario
     public function store(Request $request)
     {
 
-        /*  $validator=$this->validate($request,[
-                 "dni"=>"required|numeric|max:13|min:13|unique",
-                 "nda"=>"required|max:14|min:14|unique",
-                 "telefono"=>"numeric|max:8|min:8|unique",
-                 "primerNombre"=>"required|string|max:100|min:3",
-                 "segundoNombre"=>"max:100|string|min:3",
-                 "primerApellido"=>"required|string|max:100|min:3",
-                 "segundoApellido"=>"max:100|string|min:3",
-                 "id_pais"=>"required",
-                 "idDepartamento"=>"required",
-                 "idMunicipio"=>"required",
-                 "direccion"=>"required|max:250|min:3",
-                 "nombrePadre"=>"max:250|min:3",
-                 "nombreMadre"=>"max:250|min:3",
-                 "fechaNacimiento"=>"required",
-                 "sexo"=>"required",
-
-             ]);
-   $this->validate($request,[
-              "dni"=>"required|numeric|max:13|min:13|unique",
-              "nda"=>"required|max:14|min:14|unique",
-              "telefono"=>"numeric|max:8|min:8|unique",
-              "primerNombre"=>"required|max:100|min:3",
-              "segundoNombre"=>"max:100|min:3",
-              "primerApellido"=>"required|max:100|min:3",
-              "segundoApellido"=>"max:100|min:3",
-              "id_pais"=>"required",
-              "idDepartamento"=>"required",
-              "idMunicipio"=>"required",
-              "direccion"=>"required|max:250|min:3",
-              "nombrePadre"=>"max:250|min:3",
-              "nombreMadre"=>"max:250|min:3",
-              "fechaNacimiento"=>"required",
-              "sexo"=>"required",
-
-              //"telefono"=>"required|numeric|min:10000000|max:99999999|unique:clientes,telefono"
-          ],[
-              "dni.required"=>"Campo vacío",
-              "dni.max"=>"EL campo debe de tener 13 dígitos",
-              "dni.min"=>"EL campo debe de tener 13 dígitos",
-              "nda.required"=>"Campo vacío",
-              "telefono"=>"Campo vacío",
-              "primerNombre.requerid"=>"Campo vacío",
-              "segundoNombre"=>"Campo vacío",
-              "primerApellido.requerid"=>"Campo vacío",
-              "segundoApellido"=>"Campo vacío",
-              "id_pais.requerid"=>"Campo vacío",
-              "idDepartamento.requerid"=>"Campo vacío",
-              "idMunicipio.requerid"=>"Campo vacío",
-              "direccion.requerid"=>"Campo vacío",
-              "nombrePadre"=>"Campo vacío",
-              "nombreMadre"=>"Campo vacío",
-              "fechaNacimiento.requerid"=>"Campo vacío",
-              "sexo.requerid"=>"Campo vacío",
-          ]);
-  */
-        $nombre = $request->input("dni");
-
-
-        $path = public_path() . '/foto';//Carpeta publica de las imagenes
-
-        //-------------VALIDAR SI LA CARPETA EXISTE---------------------
-
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-        }
-        if ($request->foto) {
-            $imagen = $_FILES["foto"]["name"];
-            $ruta = $_FILES["foto"]["tmp_name"];
-            $destino = "foto/" . $nombre . $imagen;
-            copy($ruta, $destino);
-        }
 
         $formularioDo = new FormularioDo();
 
-        $formularioDo->foto = $nombre . $imagen;
-        $formularioDo->dni = $request->input("dni");
-        $formularioDo->nda = $request->input("nda");
-        $formularioDo->primerNombre = $request->input("primerNombre");
-        $formularioDo->segundoNombre = $request->input("segundoNombre");
-        $formularioDo->primerApellido = $request->input("primerApellido");
-        $formularioDo->segundoApellido = $request->input("segundoApellido");
-        $formularioDo->id_pais = $request->input("id_pais");
-        $formularioDo->idDepartamento = $request->input("idDepartamento");
-        $formularioDo->idMunicipio = $request->input("idMunicipio");
-        $formularioDo->direccion = $request->input("direccion");
-        $formularioDo->nombrePadre = $request->input("nombrePadre");
-        $formularioDo->nombreMadre = $request->input("nombreMadre");
-        $formularioDo->fechaNacimiento = $request->input("fechaNacimiento");
-        $formularioDo->sexo = $request->input("sexo");
-        $formularioDo->telefono = $request->input("telefono");
+        $formularioDo->htp = $request->input("htp");
+        $formularioDo->dm = $request->input("dm");
+        $formularioDo->ab = $request->input("ab");
+        $formularioDo->ca = $request->input("ca");
+        $formularioDo->hipe = $request->input("hipe");
+        $formularioDo->depe = $request->input("depe");
+        $formularioDo->vih = $request->input("vih");
+        $formularioDo->taba = $request->input("taba");
+        $formularioDo->ede = $request->input("ede");
+        $formularioDo->aco = $request->input("aco");
+        $formularioDo->alco = $request->input("alco");
+        $formularioDo->drogas = $request->input("drogas");
+        $formularioDo->tvp = $request->input("tvp");
+        $formularioDo->otroapp = $request->input("otroapp");
+        $formularioDo->descripcionapp = $request->input("descripcionapp");
+
+        $formularioDo->dia = $request->input("dia");
+        $formularioDo->epi = $request->input("epi");
+        $formularioDo->aler = $request->input("aler");
+        $formularioDo->otroapf = $request->input("otroapf");
+        $formularioDo->descripcionapf = $request->input("descripcionapf");
+
+        $formularioDo->traumasi = $request->input("traumasi");
+        $formularioDo->traumano = $request->input("traumano");
+        $formularioDo->descripcionqui = $request->input("descripcionqui");
+
+        $formularioDo->alersi = $request->input("alersi");
+        $formularioDo->alerno = $request->input("alerno");
+        $formularioDo->descripcionaler = $request->input("descripcionaler");
+
+        $formularioDo->emba = $request->input("emba");
+        $formularioDo->partos = $request->input("partos");
+        $formularioDo->cesaria = $request->input("cesaria");
+        $formularioDo->hijovivo = $request->input("hijovivo");
+        $formularioDo->embaActual = $request->input("embaActual");
+        $formularioDo->lacta = $request->input("lacta");
+        $formularioDo->cito = $request->input("cito");
+        $formularioDo->aborto = $request->input("aborto");
+        $formularioDo->mestrua = $request->input("mestrua");
+        $formularioDo->pla = $request->input("pla");
+        $formularioDo->descripcionfin = $request->input("descripcionfin");
+
         $formularioDo->save();
 
         //return response()->json($registroPacientes );
@@ -165,36 +108,58 @@ class FormularioDoController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $registroPacientes = Registro_paciente::findOrFail($id);
-        $registroPacientes->dni = $request->input("dni");
-        $registroPacientes->nda = $request->input("nda");
-        $registroPacientes->primerNombre = $request->input("primerNombre");
-        $registroPacientes->segundoNombre = $request->input("segundoNombre");
-        $registroPacientes->primerApellido = $request->input("primerApellido");
-        $registroPacientes->segundoApellido = $request->input("segundoApellido");
-        $registroPacientes->id_pais = $request->input("id_pais");
-        $registroPacientes->idDepartamento = $request->input("idDepartamento");
-        $registroPacientes->idMunicipio = $request->input("idMunicipio");
-        $registroPacientes->direccion = $request->input("direccion");
-        $registroPacientes->nombrePadre = $request->input("nombrePadre");
-        $registroPacientes->nombreMadre = $request->input("nombreMadre");
-        $registroPacientes->fechaNacimiento = $request->input("fechaNacimiento");
-        $registroPacientes->sexo = $request->input("sexo");
-        $registroPacientes->telefono = $request->input("telefono");
-        $registroPacientes->save();
+        $formularioDo =  FormularioDo::findOrFail($id);
+
+        $formularioDo->htp = $request->input("htp");
+        $formularioDo->dm = $request->input("dm");
+        $formularioDo->ab = $request->input("ab");
+        $formularioDo->ca = $request->input("ca");
+        $formularioDo->hipe = $request->input("hipe");
+        $formularioDo->depe = $request->input("depe");
+        $formularioDo->vih = $request->input("vih");
+        $formularioDo->taba = $request->input("taba");
+        $formularioDo->ede = $request->input("ede");
+        $formularioDo->aco = $request->input("aco");
+        $formularioDo->alco = $request->input("alco");
+        $formularioDo->drogas = $request->input("drogas");
+        $formularioDo->tvp = $request->input("tvp");
+        $formularioDo->otroapp = $request->input("otroapp");
+        $formularioDo->descripcionapp = $request->input("descripcionapp");
+
+        $formularioDo->dia = $request->input("dia");
+        $formularioDo->epi = $request->input("epi");
+        $formularioDo->aler = $request->input("aler");
+        $formularioDo->otroapf = $request->input("otroapf");
+        $formularioDo->descripcionapf = $request->input("descripcionapf");
+
+        $formularioDo->traumasi = $request->input("traumasi");
+        $formularioDo->traumano = $request->input("traumano");
+        $formularioDo->descripcionqui = $request->input("descripcionqui");
+
+        $formularioDo->alersi = $request->input("alersi");
+        $formularioDo->alerno = $request->input("alerno");
+        $formularioDo->descripcionaler = $request->input("descripcionaler");
+
+        $formularioDo->emba = $request->input("emba");
+        $formularioDo->partos = $request->input("partos");
+        $formularioDo->cesaria = $request->input("cesaria");
+        $formularioDo->hijovivo = $request->input("hijovivo");
+        $formularioDo->embaActual = $request->input("embaActual");
+        $formularioDo->lacta = $request->input("lacta");
+        $formularioDo->cito = $request->input("cito");
+        $formularioDo->aborto = $request->input("aborto");
+        $formularioDo->mestrua = $request->input("mestrua");
+        $formularioDo->pla = $request->input("pla");
+        $formularioDo->descripcionfin = $request->input("descripcionfin");
+
+        $formularioDo->save();
 
         return redirect()->route("home")->withExito("Se editó correctamente");
 
     }
 
 //eliminar
-    public function borrarPaciente($id)
-    {
-        Registro_paciente::destroy($id);
 
-        return redirect()->route("home")
-            ->withExito("Se eliminó exitosamente el paciente");
-    }
 
 
 

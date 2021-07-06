@@ -15,5 +15,8 @@ class Registro_paiseSeeder extends Seeder
         $registro_paises = new Registro_paise();
         $registro_paises ->pais ="Honduras";
         $registro_paises ->save();
+        $registro_paises = new Registro_paise();
+        $registro_paises ->pais ="Otro";
+        $registro_paises ->save();
     }
 }

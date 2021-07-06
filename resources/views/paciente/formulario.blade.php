@@ -36,16 +36,14 @@
                             </div>
                             <div class="form-group col-md-3 ">
                                 <label for="nda">Número de Afiliación</label>
-                                <input type="text" max="99999999999999" class="form-control @error('nda') is-invalid @enderror" placeholder="Ingrese el Número de Afiliación" id="nda" name="nda" required>
+                                <input type="text" maxlength="14" class="form-control @error('nda') is-invalid @enderror" placeholder="Ingrese el Número de Afiliación" id="nda" name="nda" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="telefono">Télefono</label>
-                                <input type="number"      max="99999999" class="form-control @error('telefono') is-invalid @enderror"
+                                <input type="number"     max="99999999"  class="form-control @error('telefono') is-invalid @enderror"
                                        placeholder="Ingrese el número telefónico" id="telefono" name="telefono">
 
                             </div>
-
-
                         </div>
                      <div class="col-md-12 col-sm-12 col-lg-12">
                         <div class="form-group col-md-4">
@@ -55,7 +53,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="segundoNombre">Segundo Nombre</label>
-                            <input type="text" class="form-control @error('segundoNombre') is-invalid @enderror"
+                            <input type="text" class="form-control "
                                    placeholder="Ingrese el Segundo Nombre" id="segundoNombre" name="segundoNombre">
                         </div>
 
@@ -66,7 +64,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="segundoApellido">Segundo Apellido</label>
-                            <input type="text" class="form-control @error('segundoApellido') is-invalid @enderror"
+                            <input type="text" class="form-control "
                                    placeholder="Ingrese el segundo Apellido" id="segundoApellido" name="segundoApellido" >
                             <br>
                         </div>
@@ -75,6 +73,7 @@
 
 
                             <div style="margin-top: 20%">
+                                <br>
                             <h3 style="text-align: center">Datos personales</h3>
                         </div>
 
@@ -121,19 +120,19 @@
 
                         <div class="form-group form-group col-md-3 col-sm-3 col-lg-3">
                             <label for="direccion">Dirección</label>
-                            <input type="text" class="form-control @error('direccion') is-invalid @enderror"
+                            <input type="text" minlength="3" class="form-control @error('direccion') is-invalid @enderror"
                                    placeholder="Ingrese la dirección" id="direccion"  name="direccion" required>
                         </div>
                             </div>
                     <div class="col-md-12 col-sm-12 col-lg-12">
                         <div class="form-group col-md-3 col-sm-3 col-lg-3">
                             <label for="nombrePadre">Nombre del Padre</label>
-                            <input type="text" class="form-control @error('nombrePadre') is-invalid @enderror"
+                            <input type="text" class="form-control"
                                    placeholder="Ingrese el Nombre del Padre" id="nombrePadre" name="nombrePadre">
                         </div>
                         <div class="form-group col-md-3 col-sm-3 col-lg-3">
                             <label for="nombreMadre">Nombre de la Madre</label>
-                            <input type="text" class="form-control @error('nombreMadre') is-invalid @enderror"
+                            <input type="text" class="form-control "
                                    placeholder="Ingrese el Nombre de la madre" id="nombreMadre" name="nombreMadre">
                         </div>
                         <div class="form-group col-md-3 col-sm-3 col-lg-3">
@@ -157,35 +156,36 @@
                         </div>
                     </div>
                         </div>
-                        <div class="form-group col-md-12 col-sm-12 col-lg-12">
+                        <br>
 
-                            <!-- don't give a name === doesn't send on POST/GET -->
-                            <span class="input-group-btn ">
+<div>
+          <br>
+           <label>Seleccione una imagen de su fichero</label>                 <!-- don't give a name === doesn't send on POST/GET -->
+                            <span class="input-group-btn " >
                                 <!-- image-preview-clear button -->
                                 <img type="button" class="btn btn-outline-danger image-preview-clear"
                                      style="display:none;">
-                                    <span class="fas"></span> Borrar
+                                    <span class="fas"></span>
                                 </img>
                                 <!-- image-preview-input -->
                                 <div class="btn btn-default image-preview-input " style="text-align: center">
                                     <span class="fas "></span>
-                                    <img src="diseno/images/doctora.jpg" alt="" class="img-fluid rounded-circle" style="text-align: justify">
+
                                     <span class="image-preview-input-title"></span>
-                                    <input src="diseno/images/doctora.jpg"
-                                           onerror="this.src='diseno/images/doctora.jpg'" width="100"
-                                           class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" type="file" accept="image/png, image/jpeg, image/gif"
+                                    <input
+
+                                           class="img-fluid mb-3 img-thumbnail shadow-sm" type="file" accept="image/png, image/jpeg, image/gif"
                                            name="foto"/>
                                     <!-- rename it -->
                                 </div>
                             </span>
+</div>
 
 
-                        </div>
-
-                        <div class="form-group">
+                        <div >
                         <button
                             type="submit" class="btn btn-primary mr-3" name="login"
-                            value="login" style="text-align-all: right">Siguiente
+                            value="login" >Siguiente
                         </button>
                         </div>
                     </form>

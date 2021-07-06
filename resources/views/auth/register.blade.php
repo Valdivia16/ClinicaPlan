@@ -11,7 +11,7 @@
                         </h4>
                         <br>
                 <div class="cat__pages__login__block__form">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('registroUser.crear') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -65,26 +65,62 @@
                                 <input placeholder="Confirme su contraseña" maxlength="25" minlength="8" id="password-confirm" type="password" class="form-control" name="password_confirmation" style="text-align: justify" required autocomplete="new-password">
                             </div>
                         </div>
+
+
+
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right" style="text-align: justify">{{ __('Cargo') }}</label>
                             <div class="col-md-6">
-                            <select name="rol"
-                                required="required"
-
-                                class="disponible form-control @error('disponible') is-invalid @enderror" id="disponible">
-                                <option disabled selected value="s">Seleccione su cargo</option>
-                                @foreach($roles as $rol)
-                                    <option value="{{$rol->id}}">{{$rol->rol}}</option>
+                                <select name="rol"
+                                        required="required"
+                                        class="disponible form-control @error('disponible') is-invalid @enderror" id="disponible">
+                                    <option disabled selected value="s">Seleccione su cargo</option>
+                                    @foreach($roles as $rol)
+                                        <option value="{{$rol->id}}">{{$rol->rol}}</option>
                                     @endforeach
-                            </select>
-                                <br>
-
-                                <button type="submit" class="btn btn-primary mr-3" style="text-align:center">
-                                    {{ __('Guardar') }}
-                                </button>
+                                </select>
                             </div>
-                            <!---- Boton para crear un nuevo tipo de categoria- -->
                         </div>
+ <br>
+
+                        <div class="form-group row">
+
+                                <label for="imagenCategoria" class="col-md-4 col-form-label text-md-right" style="text-align: justify">Foto de Perfil: </label>
+                                <div class="input-group image-preview">
+                                    <div class="form-group col-md-6">
+                                <button type="button" class="btn btn-outline-danger image-preview-clear"
+                                        style="display:none;">
+                                    <span class="fas"></span> Borrar
+                                </button>
+                                        <!-- image-preview-input -->
+                                <div class="btn btn-default image-preview-input" style="text-align: center">
+                                    <span class="fas "></span>
+                                    <span class="image-preview-input-title">Seleccionar</span>
+                                    <input type="file" accept="image/png, image/jpeg, image/gif"
+                                           name="foto"/>
+                                    <!-- rename it -->
+                                </div>
+                            </span>
+                                </div><!-- /input-group image-preview [TO HERE]-->
+                            </div>
+                        </div>
+
+
+                        <!-- rename it -->
+
+
+
+
+
+
+                            <br>
+                            <button type="submit" class="btn btn-primary mr-3" style="text-align:center">
+                                {{ __('Guardar') }}
+                            </button>
+
+
+                            <!---- Boton para crear un nuevo tipo de categoria- -->
+
                     </form>
                 </div>
             </div>

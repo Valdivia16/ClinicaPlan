@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- Template Main CSS File -->
     <link href="/assets/css/style.css" rel="stylesheet">
+
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- =======================================================
     * Template Name: iPortfolio - v3.3.0
     * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
@@ -42,13 +44,9 @@
 <header id="header">
     <div class="d-flex flex-column">
 
-
-
-
-
         <div class="profile" data-toggle="modal" data-target="#modalPerfil">
             <a href="#" >
-            <img type="button"  src="/diseno/images/doctora.jpg" alt="" class="img-fluid rounded-circle">
+            <img type="button"  src="foto/{{Auth::user()->foto}}" alt="jol.jpg" class="img-fluid rounded-circle">
                 <p class="text-light" style="text-align:center">{{Auth::user()->email}}</p>
             </a>
 
@@ -59,7 +57,7 @@
                 <li><a href="{{route('home')}}" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Inicio</span></a></li>
                 <li><a href="{{route('registro.crear')}}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Registro Usuarios</span></a></li>
                 <li><a href="{{route('registroPaciente')}}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Registro de Pacientes</span></a></li>
-                <li><a href="{{route('listaPaciente')}}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Registro de patología</span></a></li>
+                <li><a href="{{route('formularioDos')}}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Registro de patología</span></a></li>
                 <li><a href="" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Registro de Atención Médica</span></a></li>
                 <li><a href="" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Historial del Paciente</span></a></li>
                 <li><a href="{{route('referenciaEnfermedad')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Código de referencia de <br>enfermedades</span></a></li>
@@ -114,19 +112,82 @@
 <!-- ======= Footer ======= -->
 
 
-
-    <!-- Button trigger modal -->
-
-<div class="modal fade" id="modalPerfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="modalEditarPerfil" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <div class="modal-header" style="background: #2a2a35">
+                <h5 class="modal-title" style="color: white"><span class="fas fa-pencil-alt"></span> Editar referencia
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span style="color: white" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="{{route("editarPerfil")}}" enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
+                <div class="modal-body" style="object-fit: fill">
+                    <div class="form-group">
+                        <label for="codigo">Nombre:</label>
+                        <input required="required" type="text"
+                               class="form-control
+                                 @error('name') is-invalid @enderror" name="name" id="name"
+                               value="{{Auth::user()->name}}">
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+
+
+                </div>
+
+                <div class="form-group row">
+
+                    <label for="imagenCategoria" class="col-md-4 col-form-label text-md-right" style="text-align: justify">Nueva imagen</label>
+                    <div class="input-group image-preview">
+                        <div class="form-group col-md-6">
+                            <button type="button" class="btn btn-outline-danger image-preview-clear"
+                                    style="display:none;">
+                                <span class="fas"></span> Borrar
+                            </button>
+                            <!-- image-preview-input -->
+                            <div class="btn btn-default image-preview-input" style="text-align: center">
+                                <span class="fas "></span>
+                                <span class="image-preview-input-title">Seleccionar</span>
+                                <input type="file" accept="image/png, image/jpeg, image/gif"
+                                       name="foto"/>
+
+
+                                <!-- rename it -->
+                            </div>
+                            </span>
+                        </div><!-- /input-group image-preview [TO HERE]-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" id="id">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Button trigger modal perfil sirve la ver el perfil y el boton de editar -->
+<div class="modal fade" id="modalPerfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #2a2a35">
+                <h5  style="color: white" class="modal-title" id="exampleModalLabel">Perfil</h5>
+                <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="object-fit: fill">
                 <form>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nombre: </label>
@@ -140,21 +201,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Cargo: </label>
-                        <label for="recipient-name" class="col-form-label">{{Auth::user()->traerRol()}}</label>
-
-                    </div>
-                    <div class="form-group">
                         <label for="recipient-name" class="col-form-label">foto :</label>
-                        <img src="{{Auth::user()->foto}}" alt="jol.jpg" srcset="" height="50px" width="50px" >
+                        <img src="foto/{{Auth::user()->foto}}" alt="jol.jpg" srcset="" height="90px" width="120px" >
 
                     </div>
 
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                <div class="profile" data-toggle="modal" data-target="#modalEditarPerfil">
+                  <button type="button"  class="btn btn-primary" data-dismiss="modal">Editar</button>
+                </div>
             </div>
         </div>
     </div>

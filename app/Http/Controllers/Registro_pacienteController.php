@@ -32,25 +32,7 @@ class Registro_pacienteController extends Controller
     //crear usuario
     public function store(Request $request){
 
-        /*  $validator=$this->validate($request,[
-                 "dni"=>"required|numeric|max:13|min:13|unique",
-                 "nda"=>"required|max:14|min:14|unique",
-                 "telefono"=>"numeric|max:8|min:8|unique",
-                 "primerNombre"=>"required|string|max:100|min:3",
-                 "segundoNombre"=>"max:100|string|min:3",
-                 "primerApellido"=>"required|string|max:100|min:3",
-                 "segundoApellido"=>"max:100|string|min:3",
-                 "id_pais"=>"required",
-                 "idDepartamento"=>"required",
-                 "idMunicipio"=>"required",
-                 "direccion"=>"required|max:250|min:3",
-                 "nombrePadre"=>"max:250|min:3",
-                 "nombreMadre"=>"max:250|min:3",
-                 "fechaNacimiento"=>"required",
-                 "sexo"=>"required",
-
-             ]);
-   $this->validate($request,[
+           $this->validate($request,[
               "dni"=>"required|numeric|max:13|min:13|unique",
               "nda"=>"required|max:14|min:14|unique",
               "telefono"=>"numeric|max:8|min:8|unique",
@@ -66,6 +48,7 @@ class Registro_pacienteController extends Controller
               "nombreMadre"=>"max:250|min:3",
               "fechaNacimiento"=>"required",
               "sexo"=>"required",
+               "foto"=>"required",
 
               //"telefono"=>"required|numeric|min:10000000|max:99999999|unique:clientes,telefono"
           ],[
@@ -86,8 +69,14 @@ class Registro_pacienteController extends Controller
               "nombreMadre"=>"Campo vacío",
               "fechaNacimiento.requerid"=>"Campo vacío",
               "sexo.requerid"=>"Campo vacío",
+               "foto.requerid"=>"Campo vacío",
+
           ]);
-  */
+
+        try{
+
+
+
         $nombre = $request->input("dni");
 
 
@@ -108,7 +97,7 @@ class Registro_pacienteController extends Controller
 
         $registroPacientes = new Registro_paciente();
 
-        $registroPacientes->foto =  $path."/".$nombre.$imagen;
+        $registroPacientes->foto = $nombre.$imagen;
         $registroPacientes->dni=$request->input("dni");
         $registroPacientes->nda=$request->input("nda");
         $registroPacientes->primerNombre=$request->input("primerNombre");
@@ -126,6 +115,10 @@ class Registro_pacienteController extends Controller
         $registroPacientes->telefono=$request->input("telefono");
         $registroPacientes->save();
 
+        }catch (ValidationException $exception){
+            return redirect()->route("home")->with("Primer paso completado");
+
+        }
         //return response()->json($registroPacientes );
        return redirect()->route("home")->with("Primer paso completado");
 
