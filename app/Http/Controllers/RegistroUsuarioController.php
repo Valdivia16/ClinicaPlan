@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 class RegistroUsuarioController extends Controller
 {
     //
+
     public function index(){
         $user= User::orderBy('id')->paginate(3);
 
@@ -18,6 +19,12 @@ class RegistroUsuarioController extends Controller
 
     public function store(Request $request){
 
+        $this->validate($request,[
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'max:25', 'confirmed'],
+            'rol' => ['required', 'string'],
+        ],["rol.required"=>" Seleccione un rol "]);
        // $nombre = $request->input("dni");
 
 
@@ -50,7 +57,6 @@ class RegistroUsuarioController extends Controller
     }
     public function edit(Request $request)
     {
-
 
         $this->validate($request, [
             'name'=>'required',
@@ -95,5 +101,4 @@ class RegistroUsuarioController extends Controller
         }
 
     }
-
 }
