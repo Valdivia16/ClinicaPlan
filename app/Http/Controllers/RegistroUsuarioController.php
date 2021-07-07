@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class RegistroUsuarioController extends Controller
 {
@@ -13,8 +15,6 @@ class RegistroUsuarioController extends Controller
 
         Return view ('auth.register',compact("user"));
     }
-
-
 
     public function store(Request $request){
 
@@ -51,32 +51,27 @@ class RegistroUsuarioController extends Controller
     public function edit(Request $request)
     {
 
+
         $this->validate($request, [
             'name'=>'required',
-
-
         ]);
 
         try {
 
-            $path = public_path() . '/images/Foto';//Carpeta publica de las imagenes
+            $path = public_path() . '/foto';//Carpeta publica de las imagenes
 
             //-------------VALIDAR SI LA CARPETA EXISTE---------------------
 
             if (!file_exists($path)) {
                 mkdir($path, 0777, true);
             }
-            $nombre = $request->input("codigo");
 
             $id = Auth::user()->id;
-
             $usuario =User::findOrFail($id);
             $usuario->name = $request->input("name");
-
-
             if ($request->foto) {
                 /***Si la imagen es enviada por el usuario se debe eliminar la anterior **/
-                $img_anterior=public_path()."/images/Foto/".$usuario->foto;
+                $img_anterior=public_path()."foto/".$usuario->foto;
                 if (File::exists($img_anterior)){
                     File::delete($img_anterior);
                 }
@@ -88,14 +83,11 @@ class RegistroUsuarioController extends Controller
                     mkdir($path, 0777, true);
                 }
                 //-------------------------------------------------------------
-                $destino = "images/Foto/" .$nombre. $imagenEditada;
+                $destino = "foto/" .$imagenEditada;
                 copy($ruta, $destino);
-                $usuario->foto = $nombre.$imagenEditada;
+                $usuario->foto = $imagenEditada;
             }
             $usuario->save();
-
-
-
 
             return redirect()->route("home")->withExito("Usuario editado correctamente");
         } catch (ValidationException $exception) {
